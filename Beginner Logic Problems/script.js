@@ -95,3 +95,103 @@ long =re[i]
 let str0 = 'I am a backend developer learning JavaScript';
 let longestWord = str0.split(' ').reduce((longest, current) => (current.length > longest.length ? current : longest), '');
 console.log(longestWord);
+
+// Problem 7  Sum of array elements
+// By Manual
+let arr = [1,2,3,4]
+let sum=0
+for(let i=0;i<=arr.length-1;i++){
+    sum+=arr[i]
+}
+console.log(sum);
+// By Method
+let r = arr.reduce((acc ,aa)=>{
+return acc+aa
+},0)
+console.log(r);
+
+// Problem 8  Average of array elements
+// By Manual
+let arr1 = [1,2]
+let sum1=0
+let average =0 
+for(let i=0;i<=arr1.length-1;i++){
+    sum1+=arr1[i]
+}
+average=sum1/arr1.length
+console.log(average);
+// By Method
+let r1 = arr1.reduce((acc ,aa)=>{
+return acc+aa
+},0)
+let av =r1 / arr1.length
+console.log(av);
+
+// Problem 9  Max number in array
+// By Manual
+let maxArr = [1,2,3,4,5,5,67,8,9]
+let max = maxArr[0]
+for(let i =0 ;i<=maxArr.length-1;i++){
+    if(maxArr[i]>max){
+        max=maxArr[i]
+    }
+}
+console.log(max);
+// By Method
+let re12= Math.max(...maxArr)
+console.log(re12);
+
+// Problem 10  Min number in array
+// By Manual
+let maxArr1 = [1,2,3,4,5,5,67,8,9]
+let max1 = maxArr[0]
+for(let i =0 ;i<=maxArr1.length-1;i++){
+    if(maxArr1[i]<max1){
+        max1=maxArr1[i]
+    }
+}
+console.log(max1);
+// By Method
+let re1 = Math.min(...maxArr1)
+console.log(re1);
+
+// Problem 11 Find index of element manually
+// By Manual
+let arr2 =[1,2,3,4,5,6,7]
+let target = 5
+for(let i=0;i<=arr2.length-1;i++){
+    if(arr2[i]===target){
+        console.log(`index of ,${i}`);
+        break;
+    }
+}
+// By Method
+let rr = arr2.indexOf(target)
+console.log(rr);
+
+// Problem 12 Reverse array manually
+// By Manual
+let arr3 = [1,2,3,4,5,6,7,8]
+let rev12 = []
+for(let i=arr3.length-1;i>=0;i--){
+rev.push(arr3[i])
+}
+console.log(rev12);
+// By Method
+let rev1 =arr3.slice().reverse()
+console.log(rev1);
+
+// Problem 13 Remove duplicates from array
+// By Manual
+let dupArr = [1,2,3,4,2,1,3,4,5,6,7,8,9,1,2,3,4,112,2,3,3,4,4,5,5,6,6]
+let newArrr = []
+for(let i=0;i<=dupArr.length-1;i++){
+    if(!newArrr.includes(dupArr[i])){
+  newArrr.push(dupArr[i])
+    }
+}
+console.log(newArrr);
+// By Method
+let remove = [... new Set(dupArr)]
+console.log(remove);
+
