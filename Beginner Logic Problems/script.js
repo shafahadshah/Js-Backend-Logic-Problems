@@ -195,3 +195,45 @@ console.log(newArrr);
 let remove = [... new Set(dupArr)]
 console.log(remove);
 
+// Problem 14 Rotate array by N positions
+// By Manual
+let arr4 = [1, 2, 3, 4, 5,6];
+let N = 6;
+let L = arr4.length;
+N = N % L;   
+let newArr = [];
+
+for (let i = 0; i < L; i++) {
+    let newIndex = (i + N) % L;
+    newArr[newIndex] = arr4[i];
+}
+console.log("Original:", arr4);
+console.log("Rotated:", newArr);
+//By Method
+let arr12 = [1, 2, 3, 4, 5];
+let N1 = 2;
+let L1= arr12.length;
+N1 = ((N1 % L1) + L1) % L1; 
+let rotatedArr = arr12.slice(-N1).concat(arr12.slice(0, L1 - N1));
+console.log("Original:", arr12);
+console.log("Rotated:", rotatedArr);
+
+// // Problem 15 Find missing number in array 1 to N
+// By Method
+let arra = [1, 2, 3, 5, 6];
+let Na= 6;
+let totalSum = (Na * (Na + 1)) / 2;         
+let arrSum = arra.reduce((a, b) => a + b, 0); 
+let missingSumMethod = totalSum - arrSum;
+console.log("Missing number (Sum Formula):", missingSumMethod); 
+// BY Manual
+let missingLoopMethod;
+for (let i = 1; i <= Na; i++) {
+    if (!arra.includes(i)) {
+        missingLoopMethod = i;
+        break;
+    }
+}
+console.log("Missing number (Manual Loop):", missingLoopMethod); 
+
+
