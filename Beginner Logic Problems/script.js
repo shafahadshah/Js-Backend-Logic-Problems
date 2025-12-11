@@ -237,3 +237,48 @@ for (let i = 1; i <= Na; i++) {
 console.log("Missing number (Manual Loop):", missingLoopMethod); 
 
 
+// obj.b=3
+
+// Problem 16 Sum of first N natural numbers
+// By Manual
+let Num = 5
+let sum23=0
+for(let i=0;i<=Num;i++){
+sum23+=i
+}
+console.log(sum23);
+// By Method
+let num=5
+let sum2=num *(num+1)/2
+console.log(sum2);
+
+// Problem 17 Factorial of number
+// By Manual
+let factorail =5
+let newfact =1
+for(i =1 ;i<=factorail;i++){
+    newfact*=i
+}
+console.log(newfact);
+
+
+// Problem 18 Fibonacci series (loop)
+// // By Manual Loop
+let n = 8;       
+let a = 0, b = 1;
+console.log(a);  
+console.log(b);  
+
+for (let i = 3; i <= n; i++) {
+    let next = a + b;
+    console.log(next);  
+    b = next;           
+}
+// By Array
+let na = 8;                     
+let arr23 = [0, 1];             
+for (let i = 2; i < na; i++) {
+    arr23[i] = arr23[i - 1] + arr23[i - 2]; 
+}
+console.log(arr23);
+
