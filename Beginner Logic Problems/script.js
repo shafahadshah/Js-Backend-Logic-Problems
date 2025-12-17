@@ -282,3 +282,10 @@ for (let i = 2; i < na; i++) {
 }
 console.log(arr23);
 
+//  Problem 19 Check if number is prime
+let numn = 7;
+let isPrime = numn > 1;
+for (let i = 2; i * i < numn && isPrime; i++) {
+  if (numn% i === 0) isPrime = false;
+}
+console.log(isPrime ? "Prime" : "Not Prime");
