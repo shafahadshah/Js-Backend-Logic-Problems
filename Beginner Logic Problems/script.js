@@ -289,3 +289,16 @@ for (let i = 2; i * i < numn && isPrime; i++) {
   if (numn% i === 0) isPrime = false;
 }
 console.log(isPrime ? "Prime" : "Not Prime");
+
+// Problem 20 Check if number is Armstrong number
+function isArmstrong(num) {
+    let strNum = num.toString();
+    let sum = 0;
+    let n = strNum.length;
+    for (let i = 0; i < n; i++) {
+        sum += Math.pow(Number(strNum[i]), n);
+    }
+    return sum === num;
+}
+console.log(isArmstrong(153)); 
+console.log(isArmstrong(123)); 
