@@ -302,3 +302,14 @@ function isArmstrong(num) {
 }
 console.log(isArmstrong(153)); 
 console.log(isArmstrong(123)); 
+
+// Problem 21 Sum digits of a number
+function sumDigits(n) {
+  let sum = 0;
+  for (const ch of String(Math.abs(n))) {
+    sum += ch.charCodeAt(0) - 48; // faster than Number()
+  }
+  return sum;
+}
+
+console.log(sumDigits(12345678901234567890n));
