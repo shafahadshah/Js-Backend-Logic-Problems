@@ -293,23 +293,29 @@ console.log(isPrime ? "Prime" : "Not Prime");
 // Problem 20 Check if number is Armstrong number
 function isArmstrong(num) {
     let strNum = num.toString();
-    let sum = 0;
-    let n = strNum.length;
-    for (let i = 0; i < n; i++) {
-        sum += Math.pow(Number(strNum[i]), n);
+    let summn = 0;
+    let nnn = strNum.length;
+    for (let i = 0; i < nnn; i++) {
+        summn += Math.pow(Number(strNum[i]), nnn);
     }
-    return sum === num;
+    return summn === num;
 }
 console.log(isArmstrong(153)); 
 console.log(isArmstrong(123)); 
 
 // Problem 21 Sum digits of a number
 function sumDigits(n) {
-  let sum = 0;
+  let summm = 0;
   for (const ch of String(Math.abs(n))) {
-    sum += ch.charCodeAt(0) - 48; // faster than Number()
+    summm += ch.charCodeAt(0) - 48; // faster than Number()
   }
-  return sum;
+  return summm;
 }
-
 console.log(sumDigits(12345678901234567890n));
+
+// Problem 22 Reverse digits of a number
+function reverseNumber(num) {
+  return Number(String(num).split('').reverse().join(''));
+}
+// Example
+console.log(reverseNumber(12345)); // 54321
