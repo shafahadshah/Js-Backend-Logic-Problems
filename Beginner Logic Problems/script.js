@@ -319,3 +319,10 @@ function reverseNumber(num) {
 }
 // Example
 console.log(reverseNumber(12345)); // 54321
+
+// Problem 23 Count digits of number
+function countDigits(n) {
+  return Math.abs(n).toString().length;
+}
+
+countDigits(12345);
