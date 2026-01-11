@@ -324,5 +324,18 @@ console.log(reverseNumber(12345)); // 54321
 function countDigits(n) {
   return Math.abs(n).toString().length;
 }
-
 countDigits(12345);
+
+// Problem 24 GCD of two numbers
+function gcd(a, b) {
+  // Convert to BigInt in case numbers are very large
+  a = BigInt(a);
+  b = BigInt(b);
+  // Keep looping until the second number becomes 0
+  for (; b !== 0n;) {
+    let temp = b;   // store b temporarily
+    b = a % b;      // set b to remainder of a divided by b
+    a = temp;       // set a to old b
+  }
+  return a;  // a now contains the GCD
+}
