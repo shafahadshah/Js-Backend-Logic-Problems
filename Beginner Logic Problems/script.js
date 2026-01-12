@@ -339,3 +339,21 @@ function gcd(a, b) {
   }
   return a;  // a now contains the GCD
 }
+
+// Problem 25 LCM of two numbers
+function lcm(a, b) {
+    // Start from the maximum of a and b
+    let maxxi = a > b ? a : b;
+
+    // Keep checking multiples of max until divisible by both a and b
+    for (let i = maxxi; ; i += maxxi) { // increment by max to reduce iterations
+        if (i % a === 0 && i % b === 0) {
+            return i;
+        }
+    }
+}
+// Example usage:
+let number1 = 12;
+let number2 = 18;
+
+console.log(`LCM of ${number1} and ${number2} is: ${lcm(number1, number2)}`);
