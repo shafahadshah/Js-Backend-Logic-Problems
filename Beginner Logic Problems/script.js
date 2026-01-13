@@ -357,3 +357,22 @@ let number1 = 12;
 let number2 = 18;
 
 console.log(`LCM of ${number1} and ${number2} is: ${lcm(number1, number2)}`);
+
+// Problem 26 Check perfect number
+function isPerfectNumber(n) {
+  if (n <= 1) return false;
+  let sum = 1; // 1 is always a divisor
+  for (let i = 2; i * i <= n; i++) {
+    if (n % i === 0) {
+      sum += i;
+      if (i !== n / i) {
+        sum += n / i;
+      }
+    }
+  }
+  return sum === n;
+}
+// Examples
+console.log(isPerfectNumber(6));    // true
+console.log(isPerfectNumber(28));   // true
+console.log(isPerfectNumber(12));   // false
