@@ -376,3 +376,32 @@ function isPerfectNumber(n) {
 console.log(isPerfectNumber(6));    // true
 console.log(isPerfectNumber(28));   // true
 console.log(isPerfectNumber(12));   // false
+
+// Problem 27 Check abundant/deficient number
+function checkNumberType(n) {
+  if (n <= 0) return 'Invalid input, enter a positive integer';
+
+  let sum = 1; // 1 is always a divisor (except for n=1 itself)
+  const sqrt = Math.sqrt(n);
+
+  if (n === 1) return 'Deficient'; // special case
+
+  for (let i = 2; i <= sqrt; i++) {
+    if (n % i === 0) {
+      sum += i;
+      const otherDiv = n / i;
+      if (otherDiv !== i) sum += otherDiv; // add paired divisor only if different
+    }
+  }
+
+  if (sum === n) return 'Perfect';
+  else if (sum > n) return 'Abundant';
+  else return 'Deficient';
+}
+
+// Example usage:
+console.log(checkNumberType(12));   // Abundant
+console.log(checkNumberType(28));   // Perfect
+console.log(checkNumberType(15));   // Deficient
+console.log(checkNumberType(1));    // Deficient
+console.log(checkNumberType(945));  // Abundant (large number)
