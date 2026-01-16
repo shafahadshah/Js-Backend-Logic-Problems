@@ -405,3 +405,8 @@ console.log(checkNumberType(945));  // Abundant (large number)
 let decimal = 10;
 let binary = decimal.toString(2);
 console.log(binary); // 1010
+
+// Problem 29 Decimal to hexadecimal conversion
+const dec = 255;
+const hex = dec.toString(16);
+console.log(hex); // "ff"
