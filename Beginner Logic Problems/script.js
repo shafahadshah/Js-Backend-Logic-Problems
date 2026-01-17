@@ -410,3 +410,13 @@ console.log(binary); // 1010
 const dec = 255;
 const hex = dec.toString(16);
 console.log(hex); // "ff"
+
+// Problem 30 Decimal to octal conversion
+function decimalToOctal(decimal) {
+  return decimal.toString(8);
+}
+
+// Example
+const numberrr = 83;
+console.log(`Decimal: ${numberrr}`);
+console.log(`Octal: ${decimalToOctal(numberrr)}`);
