@@ -420,3 +420,12 @@ function decimalToOctal(decimal) {
 const numberrr = 83;
 console.log(`Decimal: ${numberrr}`);
 console.log(`Octal: ${decimalToOctal(numberrr)}`);
+
+// Problem 31 Count frequency of array elements
+const array = [1, 2, 2, 3, 3, 3];
+const freq = {};
+for (const el of array) {
+  freq[el] = (freq[el] || 0) + 1;
+}
+console.log(freq);
+// {1: 1, 2: 2, 3: 3}
