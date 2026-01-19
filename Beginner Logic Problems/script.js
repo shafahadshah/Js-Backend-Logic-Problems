@@ -429,3 +429,20 @@ for (const el of array) {
 }
 console.log(freq);
 // {1: 1, 2: 2, 3: 3}
+
+// Problem 32 Find second largest number in array
+function secondLargest(arr) {
+  let largest = -Infinity;
+  let second = -Infinity;
+  for (let num of arr) {
+    if (num > largest) {
+      second = largest;
+      largest = num;
+    } else if (num > second && num !== largest) {
+      second = num;
+    }
+  }
+  return second === -Infinity ? null : second;
+}
+// Example
+console.log(secondLargest([10, 5, 20, 8])); // 10
