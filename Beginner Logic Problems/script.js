@@ -446,3 +446,20 @@ function secondLargest(arr) {
 }
 // Example
 console.log(secondLargest([10, 5, 20, 8])); // 10
+
+// Problem 33 Find second smallest number in array
+function secondSmallest(arr) {
+  let smallest = Infinity;
+  let second = Infinity;
+  for (let num of arr) {
+    if (num < smallest) {
+      second = smallest;
+      smallest = num;
+    } else if (num > smallest && num < second) {
+      second = num;
+    }
+  }
+  return second === Infinity ? null : second;
+}
+// Example
+console.log(secondSmallest([5, 1, 3, 2, 4])); // 2
