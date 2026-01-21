@@ -463,3 +463,9 @@ function secondSmallest(arr) {
 }
 // Example
 console.log(secondSmallest([5, 1, 3, 2, 4])); // 2
+
+// Problem 34 Merge two arrays
+const arr122 = [1, 2, 3];
+const arr22 = [4, 5, 6];
+const merged = [...arr122, ...arr22];
+console.log(merged);
