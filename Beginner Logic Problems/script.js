@@ -469,3 +469,10 @@ const arr122 = [1, 2, 3];
 const arr22 = [4, 5, 6];
 const merged = [...arr122, ...arr22];
 console.log(merged);
+
+// Problem 35 Intersection of two arrays
+const arr10 = [1, 2, 3, 4];
+const arr20 = [3, 4, 5, 6];
+const set2 = new Set(arr20);
+const intersection = arr10.filter(x => set2.has(x));
+console.log(intersection); // [3, 4]
