@@ -498,3 +498,11 @@ const diagonalSum = matrix => {
 
 // Example
 diagonalSum([[1,2,3],[4,5,6],[7,8,9]]); // 15
+
+// Problem 39 Transpose Matrix
+const transpose = matrix =>
+  matrix[0].map((_, i) => matrix.map(row => row[i]));
+
+// Example
+transpose([[1,2,3],[4,5,6]]);
+// [[1,4],[2,5],[3,6]]
