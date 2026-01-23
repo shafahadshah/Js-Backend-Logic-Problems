@@ -476,3 +476,8 @@ const arr20 = [3, 4, 5, 6];
 const set2 = new Set(arr20);
 const intersection = arr10.filter(x => set2.has(x));
 console.log(intersection); // [3, 4]
+
+// Problem 36 Union of Two Arrays
+const union = (a, b) => [...new Set([...a, ...b])];
+// Example
+union([1,2,3], [3,4,5]); // [1,2,3,4,5]
