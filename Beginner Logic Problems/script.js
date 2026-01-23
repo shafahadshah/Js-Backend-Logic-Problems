@@ -481,3 +481,8 @@ console.log(intersection); // [3, 4]
 const union = (a, b) => [...new Set([...a, ...b])];
 // Example
 union([1,2,3], [3,4,5]); // [1,2,3,4,5]
+
+// Problem 37 Flatten 2D Array
+const flatten2D = arr => arr.flat();
+// Example
+flatten2D([[1,2],[3,4],[5]]); // [1,2,3,4,5]
