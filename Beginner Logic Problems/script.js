@@ -526,3 +526,8 @@ console.log(isSorted);
 let arraa = [1, 2, 3, 4, 5, 6];
 const sumEven = arraa.reduce((s, n) => s + (n % 2 === 0 ? n : 0), 0);
 console.log(sumEven);
+
+// Problem 44 Sum of odd numbers
+let arrz = [1, 2, 3, 4, 5, 6];
+const sumOdd = arrz.reduce((s, n) => s + (n % 2 !== 0 ? n : 0), 0);
+console.log(sumOdd);
