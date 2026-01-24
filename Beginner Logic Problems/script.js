@@ -516,3 +516,8 @@ console.log(arrar);
 let arrw = [5, 3, 8, 2, 1];
 arrw.sort((a, b) => b - a);
 console.log(arrw);
+
+// Problem 42 Check if array is sorted
+let arrq = [1, 2, 3, 4, 5];
+const isSorted = arrq.every((v, i) => i === 0 || arrq[i - 1] <= v);
+console.log(isSorted);
