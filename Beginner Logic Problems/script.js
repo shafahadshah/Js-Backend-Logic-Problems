@@ -506,3 +506,8 @@ const transpose = matrix =>
 // Example
 transpose([[1,2,3],[4,5,6]]);
 // [[1,4],[2,5],[3,6]]
+
+// Problem 40 Sort array ascending
+let arrar = [5, 3, 8, 2, 1];
+arrar.sort((a, b) => a - b);
+console.log(arrar);
