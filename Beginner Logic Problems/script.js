@@ -521,3 +521,8 @@ console.log(arrw);
 let arrq = [1, 2, 3, 4, 5];
 const isSorted = arrq.every((v, i) => i === 0 || arrq[i - 1] <= v);
 console.log(isSorted);
+
+// Problem 43 Sum of even numbers
+let arraa = [1, 2, 3, 4, 5, 6];
+const sumEven = arraa.reduce((s, n) => s + (n % 2 === 0 ? n : 0), 0);
+console.log(sumEven);
