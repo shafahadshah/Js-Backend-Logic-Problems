@@ -531,3 +531,8 @@ console.log(sumEven);
 let arrz = [1, 2, 3, 4, 5, 6];
 const sumOdd = arrz.reduce((s, n) => s + (n % 2 !== 0 ? n : 0), 0);
 console.log(sumOdd);
+
+// Problem 45 Remove falsy values
+let arrx = [0, 1, false, 2, "", 3, null, undefined];
+const clean = arrx.filter(Boolean);
+console.log(clean);
