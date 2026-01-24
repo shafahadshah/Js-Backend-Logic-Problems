@@ -511,3 +511,8 @@ transpose([[1,2,3],[4,5,6]]);
 let arrar = [5, 3, 8, 2, 1];
 arrar.sort((a, b) => a - b);
 console.log(arrar);
+
+// Problem 41 Sort array descending
+let arrw = [5, 3, 8, 2, 1];
+arrw.sort((a, b) => b - a);
+console.log(arrw);
