@@ -563,3 +563,17 @@ function findMode(arr) {
 }
 
 console.log(findMode([1, 2, 2, 3, 4]));
+
+// Problem 48 Count Positive, Negative, Zero
+function countPNZ(arr) {
+  let p = 0, n = 0, z = 0;
+
+  for (let x of arr) {
+    if (x > 0) p++;
+    else if (x < 0) n++;
+    else z++;
+  }
+  return { positive: p, negative: n, zero: z };
+}
+
+console.log(countPNZ([1, -2, 0, 5, -1, 0]));
