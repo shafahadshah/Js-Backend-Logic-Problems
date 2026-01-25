@@ -536,3 +536,14 @@ console.log(sumOdd);
 let arrx = [0, 1, false, 2, "", 3, null, undefined];
 const clean = arrx.filter(Boolean);
 console.log(clean);
+
+// Problem 46 Find Median of an Array
+function findMedian(arr) {
+  arr.sort((a, b) => a - b);
+  let mid = Math.floor(arr.length / 2);
+  return arr.length % 2 === 0
+    ? (arr[mid - 1] + arr[mid]) / 2
+    : arr[mid];
+}
+
+console.log(findMedian([3, 1, 4, 2, 5]));
