@@ -547,3 +547,19 @@ function findMedian(arr) {
 }
 
 console.log(findMedian([3, 1, 4, 2, 5]));
+
+// Problem 47 Find Mode of an Array
+function findMode(arr) {
+  let freq = {}, mode, max = 0;
+
+  for (let n of arr) {
+    freq[n] = (freq[n] || 0) + 1;
+    if (freq[n] > max) {
+      max = freq[n];
+      mode = n;
+    }
+  }
+  return mode;
+}
+
+console.log(findMode([1, 2, 2, 3, 4]));
