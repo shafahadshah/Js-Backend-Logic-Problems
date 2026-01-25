@@ -584,3 +584,23 @@ let ab = 4, ba = 7;
 
 console.log(ab, ba);
 
+
+// Problem 50 Generate First N Prime Numbers
+function firstNPrimes(n) {
+  let primes = [], num = 2;
+
+  while (primes.length < n) {
+    let isPrime = true;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+      if (num % i === 0) {
+        isPrime = false;
+        break;
+      }
+    }
+    if (isPrime) primes.push(num);
+    num++;
+  }
+  return primes;
+}
+
+console.log(firstNPrimes(10));
