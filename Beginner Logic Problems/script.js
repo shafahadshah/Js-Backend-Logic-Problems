@@ -577,3 +577,10 @@ function countPNZ(arr) {
 }
 
 console.log(countPNZ([1, -2, 0, 5, -1, 0]));
+
+// Problem 49 Swap Two Numbers Without Temp Variable
+let ab = 4, ba = 7;
+[ab, ba] = [ba, ab];
+
+console.log(ab, ba);
+
