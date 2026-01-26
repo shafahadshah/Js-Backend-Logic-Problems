@@ -13,3 +13,13 @@ function factorial(n) {
   return n * factorial(n - 1);
 }
 console.log(factorial(5)); // 120
+
+//  Problem 53 Fibonacci
+function fibonacci(n, memo = {}) {
+  if (n <= 1) return n;
+  if (memo[n]) return memo[n];
+
+  memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo);
+  return memo[n];
+}
+console.log(fibonacci(10)); // 55
