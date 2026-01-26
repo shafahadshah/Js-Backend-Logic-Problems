@@ -5,3 +5,11 @@ function reverseString(str) {
 }
 
 console.log(reverseString("hello")); // olleh
+
+
+//  Problem 52 Factorial
+function factorial(n) {
+  if (n <= 1) return 1;
+  return n * factorial(n - 1);
+}
+console.log(factorial(5)); // 120
