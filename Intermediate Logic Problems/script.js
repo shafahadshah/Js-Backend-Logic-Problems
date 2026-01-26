@@ -23,3 +23,13 @@ function fibonacci(n, memo = {}) {
   return memo[n];
 }
 console.log(fibonacci(10)); // 55
+
+//  Problem 54 Count Vowels
+function countVowels(str, i = 0) {
+  if (i === str.length) return 0;
+
+  const vowels = "aeiouAEIOU";
+  return (vowels.includes(str[i]) ? 1 : 0) + countVowels(str, i + 1);
+}
+
+console.log(countVowels("Javascript")); // 3
