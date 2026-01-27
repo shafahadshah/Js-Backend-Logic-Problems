@@ -69,3 +69,19 @@ function flattenArray(arr, res = []) {
 }
 console.log(flattenArray([1, [2, [3, [4]]]]));
 // [1, 2, 3, 4]
+
+
+//  Problem 58 Deep clone object
+function deepClone(obj) {
+  if (obj === null || typeof obj !== "object") return obj;
+
+  const clone = Array.isArray(obj) ? [] : {};
+  for (let key in obj) {
+    clone[key] = deepClone(obj[key]);
+  }
+  return clone;
+}
+const a = { x: 1, y: { z: 2 } };
+const b = deepClone(a);
+b.y.z = 99;
+console.log(a.y.z); // 2
