@@ -100,3 +100,14 @@ function deepEqual(a, b) {
   return true;
 }
 console.log(deepEqual({a:1,b:{c:2}}, {a:1,b:{c:2}})); // true
+
+
+//  Problem 60 Count keys in nested object
+function countKeys(obj) {
+  if (typeof obj !== "object" || obj === null) return 0;
+  return Object.keys(obj).reduce(
+    (count, key) => count + 1 + countKeys(obj[key]),
+    0
+  );
+}
+console.log(countKeys({a:1, b:{c:2, d:{e:3}}})); // 5
