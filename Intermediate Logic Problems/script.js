@@ -58,3 +58,14 @@ function findMax(arr) {
   return max;
 }
 console.log(findMax([1, [3, 5], [7, [2, 9]]])); // 9
+
+
+//  Problem 57 Flatten nested array
+function flattenArray(arr, res = []) {
+  for (let item of arr) {
+    Array.isArray(item) ? flattenArray(item, res) : res.push(item);
+  }
+  return res;
+}
+console.log(flattenArray([1, [2, [3, [4]]]]));
+// [1, 2, 3, 4]
