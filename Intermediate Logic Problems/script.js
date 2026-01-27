@@ -44,3 +44,17 @@ function isPalindrome(str, left = 0, right = str.length - 1) {
 
 console.log(isPalindrome("madam")); // true
 console.log(isPalindrome("hello")); // false
+
+//  Problem 56 Find max in nested array
+function findMax(arr) {
+  let max = -Infinity;
+  for (let item of arr) {
+    if (Array.isArray(item)) {
+      max = Math.max(max, findMax(item));
+    } else {
+      max = Math.max(max, item);
+    }
+  }
+  return max;
+}
+console.log(findMax([1, [3, 5], [7, [2, 9]]])); // 9
