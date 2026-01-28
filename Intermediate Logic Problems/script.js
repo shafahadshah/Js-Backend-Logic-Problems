@@ -133,3 +133,14 @@ console.log(mergeObjects(
   { y: 99, z: 3 }
 ));
 // { x: 1, y: 99, z: 3 }
+
+//  Problem 63 Remove property from object
+function removeProp(obj, prop) {
+  const { [prop]: _, ...rest } = obj;
+  return rest;
+}
+
+// Example
+const user = { id: 1, name: "Alex", age: 25 };
+console.log(removeProp(user, "age"));
+// { id: 1, name: "Alex" }
