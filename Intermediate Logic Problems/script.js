@@ -144,3 +144,22 @@ function removeProp(obj, prop) {
 const user = { id: 1, name: "Alex", age: 25 };
 console.log(removeProp(user, "age"));
 // { id: 1, name: "Alex" }
+
+
+//  Problem 64 Convert array of objects to object by key
+function arrayToObject(arr, key) {
+  return Object.fromEntries(arr.map(item => [item[key], item]));
+}
+
+// Example
+const users = [
+  { id: 1, name: "A" },
+  { id: 2, name: "B" }
+];
+console.log(arrayToObject(users, "id"));
+/*
+{
+  1: { id: 1, name: "A" },
+  2: { id: 2, name: "B" }
+}
+*/
