@@ -163,3 +163,17 @@ console.log(arrayToObject(users, "id"));
   2: { id: 2, name: "B" }
 }
 */
+
+
+//  Problem 65 Filter array of objects by property
+const filterByProp = (arr, key, value) =>
+  arr.filter(obj => obj[key] === value);
+
+// Example
+const products = [
+  { name: "Phone", type: "tech" },
+  { name: "Shirt", type: "clothes" }
+];
+
+console.log(filterByProp(products, "type", "tech"));
+// [{ name: "Phone", type: "tech" }]
