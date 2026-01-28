@@ -111,3 +111,16 @@ function countKeys(obj) {
   );
 }
 console.log(countKeys({a:1, b:{c:2, d:{e:3}}})); // 5
+
+
+//  Problem 61 Search value in a nested object
+function hasValue(obj, target) {
+  return Object.values(obj).some(v =>
+    v === target ||
+    (v && typeof v === "object" && hasValue(v, target))
+  );
+}
+// Example
+const data = { a: 1, b: { c: 2, d: { e: 3 } } };
+console.log(hasValue(data, 3)); // true
+console.log(hasValue(data, 5)); // false
