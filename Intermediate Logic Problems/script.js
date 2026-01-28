@@ -124,3 +124,12 @@ function hasValue(obj, target) {
 const data = { a: 1, b: { c: 2, d: { e: 3 } } };
 console.log(hasValue(data, 3)); // true
 console.log(hasValue(data, 5)); // false
+
+//  Problem 62 Merge two objects
+const mergeObjects = (a, b) => ({ ...a, ...b });
+// Example
+console.log(mergeObjects(
+  { x: 1, y: 2 },
+  { y: 99, z: 3 }
+));
+// { x: 1, y: 99, z: 3 }
