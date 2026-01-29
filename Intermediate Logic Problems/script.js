@@ -209,3 +209,23 @@ const people = [
 ];
 
 console.log(groupBy(people, "city"));
+
+
+//  Problem 68 Detect duplicates in array of objects by key
+function findDuplicates(arr, key) {
+  const seen = new Set();
+  return arr.filter(obj => {
+    if (seen.has(obj[key])) return true;
+    seen.add(obj[key]);
+    return false;
+  });
+}
+
+// Call
+const data 1= [
+  { id: 1, name: "A" },
+  { id: 2, name: "B" },
+  { id: 1, name: "C" }
+];
+
+console.log(findDuplicates(data1, "id"));
