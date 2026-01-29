@@ -222,10 +222,21 @@ function findDuplicates(arr, key) {
 }
 
 // Call
-const data 1= [
+const data1= [
   { id: 1, name: "A" },
   { id: 2, name: "B" },
   { id: 1, name: "C" }
 ];
 
 console.log(findDuplicates(data1, "id"));
+
+//  Problem 69 Simulate Stack (Array)
+const stack = [];
+
+// Push
+stack.push(10);
+stack.push(20);
+
+// Pop
+console.log(stack.pop()); // 20
+console.log(stack);       // [10]
