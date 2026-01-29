@@ -177,3 +177,17 @@ const products = [
 
 console.log(filterByProp(products, "type", "tech"));
 // [{ name: "Phone", type: "tech" }]
+
+//  Problem 66 Sort array of objects by property
+function sortByAge(arr) {
+  return arr.sort((a, b) => a.age - b.age);
+}
+
+// Call
+const users1 = [
+  { name: "A", age: 30 },
+  { name: "B", age: 20 },
+  { name: "C", age: 25 }
+];
+
+console.log(sortByAge(users1));
