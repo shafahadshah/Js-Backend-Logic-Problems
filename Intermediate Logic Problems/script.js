@@ -191,3 +191,21 @@ const users1 = [
 ];
 
 console.log(sortByAge(users1));
+
+
+//  Problem 67 Group array of objects by property
+function groupBy(arr, key) {
+  return arr.reduce((acc, obj) => {
+    (acc[obj[key]] ||= []).push(obj);
+    return acc;
+  }, {});
+}
+
+// Call
+const people = [
+  { name: "A", city: "NY" },
+  { name: "B", city: "LA" },
+  { name: "C", city: "NY" }
+];
+
+console.log(groupBy(people, "city"));
