@@ -240,3 +240,14 @@ stack.push(20);
 // Pop
 console.log(stack.pop()); // 20
 console.log(stack);       // [10]
+
+//  Problem 70 Simulate Queue (Array)
+const queue = [];
+
+// Enqueue
+queue.push(10);
+queue.push(20);
+
+// Dequeue
+console.log(queue.shift()); // 10
+console.log(queue);         // [20]
