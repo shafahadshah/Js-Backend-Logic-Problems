@@ -390,3 +390,32 @@ const arr2 = [2, 3, 5, 6];
 const arr3 = [2, 3, 7];
 
 console.log(findCommonElements([arr1, arr2, arr3])); // [2, 3]
+
+//  Problem 77 Find missing elements in multiple array 
+function findMissingFromOthers(arrays) {
+  const reference = arrays[0];
+  const otherSet = new Set();
+
+  for (let i = 1; i < arrays.length; i++) {
+    for (let val of arrays[i]) {
+      otherSet.add(val);
+    }
+  }
+
+  const missing = [];
+  for (let val of reference) {
+    if (!otherSet.has(val)) {
+      missing.push(val);
+    }
+  }
+
+  return missing;
+}
+
+// CALL
+const a1 = [1, 2, 3, 4, 5];
+const a2 = [2, 3];
+const a3 = [1, 4];
+
+console.log(findMissingFromOthers([a1, a2, a3]));
+// [5]
