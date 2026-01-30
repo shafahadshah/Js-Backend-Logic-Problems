@@ -363,3 +363,30 @@ const findArr = [4, 9, 12, 7];
 const findResult = manualFind(findArr, x => x > 10);
 
 console.log(findResult); // 12
+
+//  Problem 76 Find Common Elements in Multiple Arrays
+function findCommonElements(arrays) {
+  const map = new Map();
+  const total = arrays.length;
+
+  for (let arr of arrays) {
+    const unique = new Set(arr);
+    for (let val of unique) {
+      map.set(val, (map.get(val) || 0) + 1);
+    }
+  }
+
+  const result = [];
+  for (let [key, count] of map) {
+    if (count === total) result.push(key);
+  }
+
+  return result;
+}
+
+// CALL
+const arr1 = [1, 2, 3, 4];
+const arr2 = [2, 3, 5, 6];
+const arr3 = [2, 3, 7];
+
+console.log(findCommonElements([arr1, arr2, arr3])); // [2, 3]
