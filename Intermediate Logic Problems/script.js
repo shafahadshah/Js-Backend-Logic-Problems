@@ -285,3 +285,21 @@ console.log(dq.peekRear());  // 20
 dq.removeFront();
 dq.removeRear();
 console.log(dq.items);       // [10]
+
+
+//  Problem 72 Manual map()
+function manualMap(arr, callback) {
+  const result = new Array(arr.length);
+
+  for (let i = 0; i < arr.length; i++) {
+    result[i] = callback(arr[i], i, arr);
+  }
+
+  return result;
+}
+
+// CALL
+const mapArr = [1, 2, 3, 4];
+const mapResult = manualMap(mapArr, x => x * 2);
+
+console.log(mapResult); // [2, 4, 6, 8]
