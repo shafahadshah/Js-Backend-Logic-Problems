@@ -251,3 +251,37 @@ queue.push(20);
 // Dequeue
 console.log(queue.shift()); // 10
 console.log(queue);         // [20]
+
+//  Problem 71 Simulate Deque
+function Deque() {
+  this.items = [];
+}
+Deque.prototype.addFront = function (val) {
+  this.items.unshift(val);
+};
+Deque.prototype.addRear = function (val) {
+  this.items.push(val);
+};
+Deque.prototype.removeFront = function () {
+  return this.items.shift();
+};
+Deque.prototype.removeRear = function () {
+  return this.items.pop();
+};
+Deque.prototype.peekFront = function () {
+  return this.items[0];
+};
+Deque.prototype.peekRear = function () {
+  return this.items[this.items.length - 1];
+};
+// CALLS
+const dq = new Deque();
+dq.addRear(10);
+dq.addRear(20);
+dq.addFront(5);
+console.log(dq.items);        // [5, 10, 20]
+console.log(dq.peekFront()); // 5
+console.log(dq.peekRear());  // 20
+dq.removeFront();
+dq.removeRear();
+console.log(dq.items);       // [10]
