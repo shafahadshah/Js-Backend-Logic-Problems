@@ -347,3 +347,19 @@ const reduceArr = [1, 2, 3, 4];
 const reduceResult = manualReduce(reduceArr, (a, b) => a + b, 0);
 
 console.log(reduceResult); // 10
+
+//  Problem 75 Manual find()
+function manualFind(arr, callback) {
+  for (let i = 0; i < arr.length; i++) {
+    if (callback(arr[i], i, arr)) {
+      return arr[i];
+    }
+  }
+  return undefined;
+}
+
+// CALL
+const findArr = [4, 9, 12, 7];
+const findResult = manualFind(findArr, x => x > 10);
+
+console.log(findResult); // 12
