@@ -324,3 +324,26 @@ const filterResult = manualFilter(filterArr, x => x % 2 === 0);
 
 console.log(filterResult); // [2, 4, 6]
 
+
+//  Problem 74 Manual reduce()
+function manualReduce(arr, callback, initialValue) {
+  let accumulator = initialValue;
+  let startIndex = 0;
+
+  if (accumulator === undefined) {
+    accumulator = arr[0];
+    startIndex = 1;
+  }
+
+  for (let i = startIndex; i < arr.length; i++) {
+    accumulator = callback(accumulator, arr[i], i, arr);
+  }
+
+  return accumulator;
+}
+
+// CALL
+const reduceArr = [1, 2, 3, 4];
+const reduceResult = manualReduce(reduceArr, (a, b) => a + b, 0);
+
+console.log(reduceResult); // 10
