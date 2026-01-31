@@ -489,3 +489,23 @@ console.log(rotateClockwise([
   [4,5,6],
   [7,8,9]
 ]));
+
+
+//  Problem 83 Rotate matrix anti-clockwise (90°)
+function rotateAntiClockwise(matrix) {
+  const n = matrix.length;
+  const res = Array.from({ length: n }, () => Array(n));
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      res[n - j - 1][i] = matrix[i][j];
+    }
+  }
+  return res;
+}
+
+console.log(rotateAntiClockwise([
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+]));
