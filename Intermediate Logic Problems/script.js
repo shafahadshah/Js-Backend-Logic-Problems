@@ -419,3 +419,21 @@ const a3 = [1, 4];
 
 console.log(findMissingFromOthers([a1, a2, a3]));
 // [5]
+
+
+//  Problem 78 Check if two arrays contain same elements
+function sameElements(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+
+  const map = new Map();
+
+  for (let x of arr1) map.set(x, (map.get(x) || 0) + 1);
+  for (let x of arr2) {
+    if (!map.has(x) || map.get(x) === 0) return false;
+    map.set(x, map.get(x) - 1);
+  }
+  return true;
+}
+
+console.log(sameElements([1,2,3], [3,2,1])); // true
+console.log(sameElements([1,2,2], [2,1,1])); // false
