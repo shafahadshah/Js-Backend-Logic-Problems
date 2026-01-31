@@ -463,3 +463,10 @@ function countChars(arr) {
 }
 
 console.log(countChars(["hello", "world"])); // 10
+
+//  Problem 81 Merge multiple arrays
+function mergeArrays(...arrays) {
+  return arrays.flat();
+}
+
+console.log(mergeArrays([1,2], [3,4], [5])); // [1,2,3,4,5]
