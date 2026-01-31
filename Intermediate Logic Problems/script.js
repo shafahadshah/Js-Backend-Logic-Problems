@@ -455,3 +455,11 @@ function longestSubstring(s) {
 
 console.log(longestSubstring("abcabcbb")); // 3
 console.log(longestSubstring("bbbbb")); // 1
+
+
+//  Problem 80 Count total characters in array of strings
+function countChars(arr) {
+  return arr.reduce((sum, str) => sum + str.length, 0);
+}
+
+console.log(countChars(["hello", "world"])); // 10
