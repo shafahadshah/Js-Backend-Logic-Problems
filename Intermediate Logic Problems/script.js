@@ -470,3 +470,22 @@ function mergeArrays(...arrays) {
 }
 
 console.log(mergeArrays([1,2], [3,4], [5])); // [1,2,3,4,5]
+
+//  Problem 82 Rotate matrix clockwise (90°)
+function rotateClockwise(matrix) {
+  const n = matrix.length;
+  const res = Array.from({ length: n }, () => Array(n));
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      res[j][n - i - 1] = matrix[i][j];
+    }
+  }
+  return res;
+}
+
+console.log(rotateClockwise([
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+]));
