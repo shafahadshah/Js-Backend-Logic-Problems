@@ -437,3 +437,21 @@ function sameElements(arr1, arr2) {
 
 console.log(sameElements([1,2,3], [3,2,1])); // true
 console.log(sameElements([1,2,2], [2,1,1])); // false
+
+
+//  Problem 79 Longest substring without repeating characters
+function longestSubstring(s) {
+  let set = new Set(), left = 0, max = 0;
+
+  for (let right = 0; right < s.length; right++) {
+    while (set.has(s[right])) {
+      set.delete(s[left++]);
+    }
+    set.add(s[right]);
+    max = Math.max(max, right - left + 1);
+  }
+  return max;
+}
+
+console.log(longestSubstring("abcabcbb")); // 3
+console.log(longestSubstring("bbbbb")); // 1
