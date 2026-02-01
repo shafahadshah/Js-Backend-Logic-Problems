@@ -700,3 +700,37 @@ const B = [
 ];
 
 console.log(sumMatrices(A, B));
+
+
+
+//  Problem 90 Multiply Two Matrices
+function multiplyMatrices(A, B) {
+  const rowsA = A.length;
+  const colsA = A[0].length;
+  const colsB = B[0].length;
+
+  const result = Array.from({ length: rowsA }, () => Array(colsB).fill(0));
+
+  for (let i = 0; i < rowsA; i++) {
+    for (let j = 0; j < colsB; j++) {
+      for (let k = 0; k < colsA; k++) {
+        result[i][j] += A[i][k] * B[k][j];
+      }
+    }
+  }
+  return result;
+}
+
+// Call
+const M1 = [
+  [1, 2, 3],
+  [4, 5, 6]
+];
+
+const M2 = [
+  [7, 8],
+  [9, 10],
+  [11, 12]
+];
+
+console.log(multiplyMatrices(M1, M2));
