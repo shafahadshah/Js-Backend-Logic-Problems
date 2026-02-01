@@ -546,3 +546,34 @@ console.log(spiralOrder([
   [4, 5, 6],
   [7, 8, 9]
 ]));
+
+
+//  Problem 85 BFS Traversal of Tree / Object Structure
+function bfs(root) {
+  if (!root) return [];
+  const queue = [root];
+  const result = [];
+
+  while (queue.length) {
+    const node = queue.shift();
+    result.push(node.value);
+
+    if (node.children) {
+      for (const child of node.children) {
+        queue.push(child);
+      }
+    }
+  }
+  return result;
+}
+
+// Call
+const tree = {
+  value: 1,
+  children: [
+    { value: 2, children: [{ value: 4 }] },
+    { value: 3, children: [{ value: 5 }, { value: 6 }] }
+  ]
+};
+
+console.log(bfs(tree));
