@@ -670,3 +670,33 @@ const graph2 = {
 };
 
 console.log(shortestPath(graph2, "A", "E"));
+
+
+
+//  Problem 89 Sum of Two Matrices
+function sumMatrices(A, B) {
+  const rows = A.length;
+  const cols = A[0].length;
+
+  const result = Array.from({ length: rows }, () => Array(cols).fill(0));
+
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      result[i][j] = A[i][j] + B[i][j];
+    }
+  }
+  return result;
+}
+
+// Call
+const A = [
+  [1, 2],
+  [3, 4]
+];
+
+const B = [
+  [5, 6],
+  [7, 8]
+];
+
+console.log(sumMatrices(A, B));
