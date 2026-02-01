@@ -637,3 +637,36 @@ const graph = {
 };
 
 console.log(hasCycle(graph));
+
+
+
+//  Problem 88 Shortest Path in Graph
+function shortestPath(graph, start, end) {
+  const queue = [[start, 0]];
+  const visited = new Set([start]);
+
+  while (queue.length) {
+    const [node, distance] = queue.shift();
+
+    if (node === end) return distance;
+
+    for (const neighbor of graph[node] || []) {
+      if (!visited.has(neighbor)) {
+        visited.add(neighbor);
+        queue.push([neighbor, distance + 1]);
+      }
+    }
+  }
+  return -1;
+}
+
+// Call
+const graph2 = {
+  A: ["B", "C"],
+  B: ["D"],
+  C: ["D"],
+  D: ["E"],
+  E: []
+};
+
+console.log(shortestPath(graph2, "A", "E"));
