@@ -577,3 +577,26 @@ const tree = {
 };
 
 console.log(bfs(tree));
+
+
+//  Problem 86 DFS Traversal of Tree / Object Structure
+function dfs(root) {
+  const result = [];
+
+  function traverse(node) {
+    if (!node) return;
+    result.push(node.value);
+
+    if (node.children) {
+      for (const child of node.children) {
+        traverse(child);
+      }
+    }
+  }
+
+  traverse(root);
+  return result;
+}
+
+// Call
+console.log(dfs(tree));
