@@ -734,3 +734,22 @@ const M2 = [
 ];
 
 console.log(multiplyMatrices(M1, M2));
+
+
+//  Problem 91 Find element with max value in object array
+const maxDataList = [
+  { id: 1, score: 10 },
+  { id: 2, score: 40 },
+  { id: 3, score: 25 }
+];
+
+let maxItemObj = maxDataList[0];
+
+maxDataList.forEach(currentObj => {
+  if (currentObj.score > maxItemObj.score) {
+    maxItemObj = currentObj;
+  }
+});
+
+console.log(maxItemObj);
+// { id: 2, score: 40 }
