@@ -753,3 +753,22 @@ maxDataList.forEach(currentObj => {
 
 console.log(maxItemObj);
 // { id: 2, score: 40 }
+
+
+//  Problem 92 Find element with min value in object array
+const minDataList = [
+  { id: 1, score: 10 },
+  { id: 2, score: 40 },
+  { id: 3, score: 25 }
+];
+
+let minItemObj = minDataList[0];
+
+minDataList.forEach(currentObj => {
+  if (currentObj.score < minItemObj.score) {
+    minItemObj = currentObj;
+  }
+});
+
+console.log(minItemObj);
+// { id: 1, score: 10 }
