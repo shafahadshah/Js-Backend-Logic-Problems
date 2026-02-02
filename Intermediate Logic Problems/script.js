@@ -814,3 +814,15 @@ let secondIndexPos = 3;
 
 console.log(swapTargetArray);
 // [20, 10, 15, 5]
+
+
+//  Problem 96 Reverse words in a string
+const sentenceText = "learn javascript fast";
+
+const reversedWordsText = sentenceText
+  .split(" ")
+  .reverse()
+  .join(" ");
+
+console.log(reversedWordsText);
+// "fast javascript learn"
