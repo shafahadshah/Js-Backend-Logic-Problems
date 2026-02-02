@@ -801,3 +801,16 @@ const mixedFalsyArray = [0, 1, false, [2, "", null, [3, undefined]]];
 
 console.log(cleanFalsyRecursive(mixedFalsyArray));
 // [1, [2, [3]]]
+
+
+//  Problem 95 Swap two elements in array
+const swapTargetArray = [5, 10, 15, 20];
+
+let firstIndexPos = 0;
+let secondIndexPos = 3;
+
+[swapTargetArray[firstIndexPos], swapTargetArray[secondIndexPos]] =
+[swapTargetArray[secondIndexPos], swapTargetArray[firstIndexPos]];
+
+console.log(swapTargetArray);
+// [20, 10, 15, 5]
