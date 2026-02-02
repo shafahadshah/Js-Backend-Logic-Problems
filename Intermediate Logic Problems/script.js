@@ -784,3 +784,20 @@ const subsetResultFlag = subsetArray.every(
 
 console.log(subsetResultFlag);
 // true
+
+
+//  Problem 94 Remove falsy values recursively from array
+function cleanFalsyRecursive(inputArray) {
+  return inputArray
+    .filter(Boolean)
+    .map(nestedValue =>
+      Array.isArray(nestedValue)
+        ? cleanFalsyRecursive(nestedValue)
+        : nestedValue
+    );
+}
+
+const mixedFalsyArray = [0, 1, false, [2, "", null, [3, undefined]]];
+
+console.log(cleanFalsyRecursive(mixedFalsyArray));
+// [1, [2, [3]]]
