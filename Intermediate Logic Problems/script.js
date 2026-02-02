@@ -772,3 +772,15 @@ minDataList.forEach(currentObj => {
 
 console.log(minItemObj);
 // { id: 1, score: 10 }
+
+
+//  Problem 93 Check if array is subset of another array
+const subsetArray = [2, 3];
+const mainArraySet = [1, 2, 3, 4, 5];
+
+const subsetResultFlag = subsetArray.every(
+  elementValue => mainArraySet.includes(elementValue)
+);
+
+console.log(subsetResultFlag);
+// true
