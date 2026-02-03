@@ -905,3 +905,23 @@ console.log(countNumbers({
   g: 4
 }));
 // 👉 4
+
+
+//  Problem 102 Find all leaf nodes in object / tree
+function findLeafNodes(obj, result = []) {
+  Object.values(obj).forEach(value => {
+    if (typeof value === "object" && value !== null) {
+      findLeafNodes(value, result);
+    } else {
+      result.push(value);
+    }
+  });
+  return result;
+}
+
+console.log(findLeafNodes({
+  a: 1,
+  b: { c: 2, d: { e: 3 } },
+  f: "end"
+}));
+// 👉 [1, 2, 3, "end"]
