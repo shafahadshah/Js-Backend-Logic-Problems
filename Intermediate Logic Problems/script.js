@@ -884,3 +884,24 @@ function countArrays(arr) {
 
 console.log(countArrays([1, [], [2, 3], "a", [], {}]));
 // 👉 3
+
+
+//  Problem 101 Count total numeric values in a nested object
+function countNumbers(obj) {
+  let count = 0;
+
+  Object.values(obj).forEach(value => {
+    if (typeof value === "number") count++;
+    else if (typeof value === "object" && value !== null)
+      count += countNumbers(value);
+  });
+
+  return count;
+}
+
+console.log(countNumbers({
+  a: 1,
+  b: { c: 2, d: "x", e: { f: 3 } },
+  g: 4
+}));
+// 👉 4
