@@ -839,3 +839,18 @@ function capitalizeWords(str) {
 
 console.log(capitalizeWords("hello world from js"));
 // 👉 "Hello World From Js"
+
+
+//  Problem 98 Convert snake_case → camelCase
+function snakeToCamel(str) {
+  let result = "";
+  str.split("_").forEach((word, i) => {
+    result += i === 0
+      ? word
+      : word.charAt(0).toUpperCase() + word.slice(1);
+  });
+  return result;
+}
+
+console.log(snakeToCamel("hello_world_example"));
+// 👉 "helloWorldExample"
