@@ -854,3 +854,20 @@ function snakeToCamel(str) {
 
 console.log(snakeToCamel("hello_world_example"));
 // 👉 "helloWorldExample"
+
+
+//  Problem 99 Convert camelCase → kebab-case
+function camelToKebab(str) {
+  let result = "";
+  str.split("").forEach(char => {
+    if (char === char.toUpperCase() && isNaN(char)) {
+      result += "-" + char.toLowerCase();
+    } else {
+      result += char;
+    }
+  });
+  return result;
+}
+
+console.log(camelToKebab("helloWorldExample"));
+// 👉 "hello-world-example"
