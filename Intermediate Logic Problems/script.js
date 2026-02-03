@@ -871,3 +871,16 @@ function camelToKebab(str) {
 
 console.log(camelToKebab("helloWorldExample"));
 // 👉 "hello-world-example"
+
+
+//  Problem 100 Count number of arrays inside an array
+function countArrays(arr) {
+  let count = 0;
+  arr.forEach(item => {
+    if (Array.isArray(item)) count++;
+  });
+  return count;
+}
+
+console.log(countArrays([1, [], [2, 3], "a", [], {}]));
+// 👉 3
