@@ -925,3 +925,20 @@ console.log(findLeafNodes({
   f: "end"
 }));
 // 👉 [1, 2, 3, "end"]
+
+
+//  Problem 103 Remove duplicates from nested array
+function removeDuplicatesNested(arr) {
+  let flat = [];
+  arr.forEach(item => {
+    if (Array.isArray(item)) {
+      item.forEach(v => flat.push(v));
+    } else {
+      flat.push(item);
+    }
+  });
+  return [...new Set(flat)];
+}
+
+console.log(removeDuplicatesNested([1, [2, 3, 1], [3, 4], 5, [5, 6]]));
+// 👉 [1, 2, 3, 4, 5, 6]
