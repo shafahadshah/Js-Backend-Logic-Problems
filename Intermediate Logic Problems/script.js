@@ -942,3 +942,24 @@ function removeDuplicatesNested(arr) {
 
 console.log(removeDuplicatesNested([1, [2, 3, 1], [3, 4], 5, [5, 6]]));
 // 👉 [1, 2, 3, 4, 5, 6]
+
+
+//  Problem 104 Find N largest numbers in array
+function findNLargest(arr, n) {
+  let result = [];
+
+  arr.forEach(num => {
+    if (result.length < n) {
+      result.push(num);
+      result.sort((a, b) => a - b);
+    } else if (num > result[0]) {
+      result[0] = num;
+      result.sort((a, b) => a - b);
+    }
+  });
+
+  return result.reverse();
+}
+
+console.log(findNLargest([10, 5, 20, 8, 25, 2], 3));
+// 👉 [25, 20, 10]
