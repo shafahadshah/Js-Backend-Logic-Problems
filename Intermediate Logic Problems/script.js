@@ -987,7 +987,7 @@ console.log("106:", primesInRange(10,30)); // [11,13,17,19,23,29]
 
 
 
-//  Problem 106 Sum of primes in range
+//  Problem 107 Sum of primes in range
 function sumPrimes(start,end){
   return primesInRange(start,end).reduce((a,b)=>a+b,0);
 }
@@ -995,7 +995,7 @@ console.log("107:", sumPrimes(10,30)); // 112
 
 
 
-//  Problem 107 Check if power of 2
+//  Problem 108 Check if power of 2
 function isPowerOf2(n){
   return n>0 && (n&(n-1))===0;
 }
@@ -1004,7 +1004,7 @@ console.log("108:", isPowerOf2(10)); // false
 
 
 
-//  Problem 108 Check if power of 3
+//  Problem 109 Check if power of 3
 function isPowerOf3(n){
   if(n<1) return false;
   while(n%3===0) n/=3;
@@ -1012,3 +1012,12 @@ function isPowerOf3(n){
 }
 console.log("109:", isPowerOf3(9)); // true
 console.log("109:", isPowerOf3(10)); // false
+
+
+
+//  Problem 110 Factorial of digits
+function factorialDigits(num){
+  const fact=(n)=>{let f=1;for(let i=2;i<=n;i++) f*=i; return f;}
+  return String(num).split('').map(d=>fact(+d));
+}
+console.log("110:", factorialDigits(145)); // [1,24,120]
