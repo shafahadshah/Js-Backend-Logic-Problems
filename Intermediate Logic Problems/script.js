@@ -1021,3 +1021,16 @@ function factorialDigits(num){
   return String(num).split('').map(d=>fact(+d));
 }
 console.log("110:", factorialDigits(145)); // [1,24,120]
+
+
+//  Problem 111 Sum of digits until single digit
+function sumToSingleDigit(n) {
+  while (n >= 10) {
+    n = String(n).split('').reduce((a,b) => a + (+b), 0);
+  }
+  return n;
+}
+
+// Example
+console.log(sumToSingleDigit(9875)); // 2 → 9+8+7+5=29 → 2+9=11 → 1+1=2
+console.log(sumToSingleDigit(12345)); // 6
