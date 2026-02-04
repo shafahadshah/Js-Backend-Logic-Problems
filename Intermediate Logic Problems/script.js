@@ -970,3 +970,17 @@ function nSmallest(arr, n){
   return arr.slice().sort((a,b)=>a-b).slice(0,n);
 }
 console.log("105:", nSmallest([5,1,9,2,7],3)); // [1,2,5]
+
+
+//  Problem 106 Prime numbers in range
+function primesInRange(start,end){
+  let primes=[];
+  for(let i=start;i<=end;i++){
+    if(i<2) continue;
+    let isPrime=true;
+    for(let j=2;j*j<=i;j++) if(i%j===0){isPrime=false;break;}
+    if(isPrime) primes.push(i);
+  }
+  return primes;
+}
+console.log("106:", primesInRange(10,30)); // [11,13,17,19,23,29]
