@@ -984,3 +984,11 @@ function primesInRange(start,end){
   return primes;
 }
 console.log("106:", primesInRange(10,30)); // [11,13,17,19,23,29]
+
+
+
+//  Problem 106 Sum of primes in range
+function sumPrimes(start,end){
+  return primesInRange(start,end).reduce((a,b)=>a+b,0);
+}
+console.log("107:", sumPrimes(10,30)); // 112 
