@@ -992,3 +992,12 @@ function sumPrimes(start,end){
   return primesInRange(start,end).reduce((a,b)=>a+b,0);
 }
 console.log("107:", sumPrimes(10,30)); // 112 
+
+
+
+//  Problem 10 Check if power of 2
+function isPowerOf2(n){
+  return n>0 && (n&(n-1))===0;
+}
+console.log("108:", isPowerOf2(8)); // true
+console.log("108:", isPowerOf2(10)); // false
