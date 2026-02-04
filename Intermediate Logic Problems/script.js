@@ -963,3 +963,10 @@ function findNLargest(arr, n) {
 
 console.log(findNLargest([10, 5, 20, 8, 25, 2], 3));
 // 👉 [25, 20, 10]
+
+
+//  Problem 105 Find N smallest numbers in array
+function nSmallest(arr, n){
+  return arr.slice().sort((a,b)=>a-b).slice(0,n);
+}
+console.log("105:", nSmallest([5,1,9,2,7],3)); // [1,2,5]
