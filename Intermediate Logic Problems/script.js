@@ -995,9 +995,20 @@ console.log("107:", sumPrimes(10,30)); // 112
 
 
 
-//  Problem 10 Check if power of 2
+//  Problem 107 Check if power of 2
 function isPowerOf2(n){
   return n>0 && (n&(n-1))===0;
 }
 console.log("108:", isPowerOf2(8)); // true
 console.log("108:", isPowerOf2(10)); // false
+
+
+
+//  Problem 108 Check if power of 3
+function isPowerOf3(n){
+  if(n<1) return false;
+  while(n%3===0) n/=3;
+  return n===1;
+}
+console.log("109:", isPowerOf3(9)); // true
+console.log("109:", isPowerOf3(10)); // false
