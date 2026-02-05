@@ -1069,3 +1069,16 @@ function arrayIndexOf(arr, val) {
 
 console.log(arrayIndexOf([1,2,3], 2)); // 1
 console.log(arrayIndexOf([1,2,3], 5)); // -1
+
+
+//  Problem 115 Count true/false in boolean array
+function countBoolean(arr) {
+    let trueCount = 0, falseCount = 0;
+    for (let val of arr) {
+        if (val) trueCount++;
+        else falseCount++;
+    }
+    return {trueCount, falseCount};
+}
+
+console.log(countBoolean([true, false, true, true, false])); // {trueCount:3, falseCount:2}
