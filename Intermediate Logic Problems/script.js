@@ -1045,3 +1045,15 @@ function sumDigitsToSingle(n) {
 }
 
 console.log(sumDigitsToSingle(9876)); // 3
+
+
+//  Problem 113 Manual includes for array
+function arrayIncludes(arr, val) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === val) return true;
+    }
+    return false;
+}
+
+console.log(arrayIncludes([1,2,3], 2)); // true
+console.log(arrayIncludes([1,2,3], 5)); // false
