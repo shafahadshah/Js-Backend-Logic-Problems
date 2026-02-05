@@ -1057,3 +1057,15 @@ function arrayIncludes(arr, val) {
 
 console.log(arrayIncludes([1,2,3], 2)); // true
 console.log(arrayIncludes([1,2,3], 5)); // false
+
+
+//  Problem 114 Manual indexOf for array
+function arrayIndexOf(arr, val) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === val) return i;
+    }
+    return -1;
+}
+
+console.log(arrayIndexOf([1,2,3], 2)); // 1
+console.log(arrayIndexOf([1,2,3], 5)); // -1
