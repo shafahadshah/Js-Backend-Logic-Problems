@@ -1082,3 +1082,17 @@ function countBoolean(arr) {
 }
 
 console.log(countBoolean([true, false, true, true, false])); // {trueCount:3, falseCount:2}
+
+
+//  Problem 116 Merge two sorted arrays (two-pointer)
+function mergeSortedArrays(a, b) {
+    let result = [], i = 0, j = 0;
+    while (i < a.length && j < b.length) {
+        if (a[i] < b[j]) result.push(a[i++]);
+        else result.push(b[j++]);
+    }
+    return result.concat(a.slice(i)).concat(b.slice(j));
+}
+
+console.log(mergeSortedArrays([1,3,5],[2,4,6])); // [1,2,3,4,5,6]
+
