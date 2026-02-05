@@ -1034,3 +1034,14 @@ function sumToSingleDigit(n) {
 // Example
 console.log(sumToSingleDigit(9875)); // 2 → 9+8+7+5=29 → 2+9=11 → 1+1=2
 console.log(sumToSingleDigit(12345)); // 6
+
+
+//  Problem 112 Sum of digits until single digit
+function sumDigitsToSingle(n) {
+    while (n >= 10) {
+        n = n.toString().split('').reduce((a, b) => a + Number(b), 0);
+    }
+    return n;
+}
+
+console.log(sumDigitsToSingle(9876)); // 3
