@@ -1096,3 +1096,14 @@ function mergeSortedArrays(a, b) {
 
 console.log(mergeSortedArrays([1,3,5],[2,4,6])); // [1,2,3,4,5,6]
 
+
+
+//  Problem 117 Find missing number using sum formula
+function findMissingNumber(arr, n) {
+    let sum = (n*(n+1))/2;
+    let arrSum = arr.reduce((a,b)=>a+b, 0);
+    return sum - arrSum;
+}
+
+console.log(findMissingNumber([1,2,4,5], 5)); // 3
+
