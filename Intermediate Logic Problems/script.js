@@ -1107,3 +1107,12 @@ function findMissingNumber(arr, n) {
 
 console.log(findMissingNumber([1,2,4,5], 5)); // 3
 
+
+
+
+//  Problem 118 Remove element from array by value
+function removeByValue(arr, val) {
+    return arr.filter(x => x !== val);
+}
+
+console.log(removeByValue([1,2,3,2,4], 2)); // [1,3,4]
