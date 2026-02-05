@@ -1116,3 +1116,13 @@ function removeByValue(arr, val) {
 }
 
 console.log(removeByValue([1,2,3,2,4], 2)); // [1,3,4]
+
+
+
+
+//  Problem 119 Find common keys in two objects
+function commonKeys(obj1, obj2) {
+    return Object.keys(obj1).filter(key => key in obj2);
+}
+
+console.log(commonKeys({a:1,b:2,c:3}, {b:4,c:5,d:6})); // ["b","c"]
