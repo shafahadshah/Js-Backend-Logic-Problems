@@ -1126,3 +1126,20 @@ function commonKeys(obj1, obj2) {
 }
 
 console.log(commonKeys({a:1,b:2,c:3}, {b:4,c:5,d:6})); // ["b","c"]
+
+
+
+
+//  Problem 120 Find uncommon keys in two objects
+function findUncommonKeys(obj1, obj2) {
+    const keys1 = new Set(Object.keys(obj1));
+    const keys2 = new Set(Object.keys(obj2));
+    const uncommon = [...keys1].filter(k => !keys2.has(k))
+                     .concat([...keys2].filter(k => !keys1.has(k)));
+    return uncommon;
+}
+
+// Example
+const ab = { x: 1, y: 2, z: 3 };
+const b = { y: 5, z: 6, w: 7 };
+console.log(findUncommonKeys(ab, b)); // ['x', 'w']
