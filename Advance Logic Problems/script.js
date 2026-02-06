@@ -47,3 +47,28 @@ const deque3= new Deque();
 deque3.addRear(1); deque3.addFront(0);
 console.log(deque3.removeRear()); // 1
 console.log(deque3.peekFront()); // 0
+
+
+//  Problem 124 Priority Queue
+class PriorityQueue {
+    constructor() { this.items = []; }
+    enqueue(item, priority) {
+        const element = { item, priority };
+        let added = false;
+        for (let i = 0; i < this.items.length; i++) {
+            if (priority < this.items[i].priority) {
+                this.items.splice(i, 0, element);
+                added = true;
+                break;
+            }
+        }
+        if (!added) this.items.push(element);
+    }
+    dequeue() { return this.items.shift()?.item; }
+    isEmpty() { return this.items.length === 0; }
+}
+
+// Example
+const pq = new PriorityQueue();
+pq.enqueue('task1', 2); pq.enqueue('task2', 1);
+console.log(pq.dequeue()); // 'task2' (higher priority)
