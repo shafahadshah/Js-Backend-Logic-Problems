@@ -72,3 +72,30 @@ class PriorityQueue {
 const pq = new PriorityQueue();
 pq.enqueue('task1', 2); pq.enqueue('task2', 1);
 console.log(pq.dequeue()); // 'task2' (higher priority)
+
+//  Problem 125 Singly Linked List
+class Node {
+    constructor(value) { this.value = value; this.next = null; }
+}
+
+class LinkedList {
+    constructor() { this.head = null; }
+    append(value) {
+        const node = new Node(value);
+        if (!this.head) { this.head = node; return; }
+        let current = this.head;
+        while (current.next) current = current.next;
+        current.next = node;
+    }
+    print() {
+        let current = this.head;
+        const values = [];
+        while (current) { values.push(current.value); current = current.next; }
+        console.log(values.join(' -> '));
+    }
+}
+
+// Example
+const list = new LinkedList();
+list.append(1); list.append(2); list.append(3);
+list.print(); // 1 -> 2 -> 3
