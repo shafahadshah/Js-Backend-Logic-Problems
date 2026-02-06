@@ -28,3 +28,22 @@ const queue = new Queue();
 queue.enqueue(1); queue.enqueue(2);
 console.log(queue.dequeue()); // 1
 console.log(queue.front()); // 2
+
+
+//  Problem 123 Deque (Double-ended Queue)
+class Deque3 {
+    constructor() { this.items = []; }
+    addFront(item) { this.items.unshift(item); }
+    addRear(item) { this.items.push(item); }
+    removeFront() { return this.items.shift(); }
+    removeRear() { return this.items.pop(); }
+    peekFront() { return this.items[0]; }
+    peekRear() { return this.items[this.items.length - 1]; }
+    isEmpty() { return this.items.length === 0; }
+}
+
+// Example
+const deque3= new Deque();
+deque3.addRear(1); deque3.addFront(0);
+console.log(deque3.removeRear()); // 1
+console.log(deque3.peekFront()); // 0
