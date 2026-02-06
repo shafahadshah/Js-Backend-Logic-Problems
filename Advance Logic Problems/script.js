@@ -12,3 +12,19 @@ const stack = new Stack();
 stack.push(1); stack.push(2);
 console.log(stack.pop()); // 2
 console.log(stack.peek()); // 1
+
+
+//  Problem 122 Queue with enqueue/dequeue
+class Queue {
+    constructor() { this.items = []; }
+    enqueue(item) { this.items.push(item); }
+    dequeue() { return this.items.shift(); }
+    front() { return this.items[0]; }
+    isEmpty() { return this.items.length === 0; }
+}
+
+// Example
+const queue = new Queue();
+queue.enqueue(1); queue.enqueue(2);
+console.log(queue.dequeue()); // 1
+console.log(queue.front()); // 2
