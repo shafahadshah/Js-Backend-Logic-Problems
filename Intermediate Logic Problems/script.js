@@ -1143,3 +1143,22 @@ function findUncommonKeys(obj1, obj2) {
 const ab = { x: 1, y: 2, z: 3 };
 const b = { y: 5, z: 6, w: 7 };
 console.log(findUncommonKeys(ab, b)); // ['x', 'w']
+
+
+
+//  Problem 121 Flatten object keys with dot notation
+function flattenObject(obj, prefix = '') {
+    let res = {};
+    for (let key in obj) {
+        if (typeof obj[key] === 'object' && obj[key] !== null) {
+            Object.assign(res, flattenObject(obj[key], prefix + key + '.'));
+        } else {
+            res[prefix + key] = obj[key];
+        }
+    }
+    return res;
+}
+
+// Example
+const obj = { a: 1, b: { c: 2, d: 3 } };
+console.log(flattenObject(obj)); // { 'a': 1, 'b.c': 2, 'b.d': 3 }
