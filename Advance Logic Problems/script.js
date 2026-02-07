@@ -171,3 +171,25 @@ class CircularLinkedList {
     }
   }
 }
+
+
+ 
+//  Problem 128 Manual Implementation of Hash Map
+class HashMap {
+  constructor() {
+    this.data = {};
+  }
+
+  put(key, val) {
+    this.data[key] = val;
+  }
+
+  get(key) {
+    return this.data[key];
+  }
+
+  remove(key) {
+    delete this.data[key];
+  }
+}
+
