@@ -193,3 +193,24 @@ class HashMap {
   }
 }
 
+
+
+ 
+//  Problem 129 Manual Implementation of Set
+class MySet {
+  constructor() {
+    this.data = {};
+  }
+
+  add(val) {
+    this.data[val] = true;
+  }
+
+  has(val) {
+    return this.data[val] === true;
+  }
+
+  remove(val) {
+    delete this.data[val];
+  }
+}
