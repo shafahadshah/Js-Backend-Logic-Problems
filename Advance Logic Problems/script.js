@@ -237,3 +237,23 @@ class GraphAdjList {
     console.log(this.graph);
   }
 }
+
+
+ 
+//  Problem 131 Graph Implementation Using Adjacency Matrix
+class GraphAdjMatrix {
+  constructor(n) {
+    this.matrix = Array.from({ length: n }, () =>
+      Array(n).fill(0)
+    );
+  }
+
+  addEdge(i, j) {
+    this.matrix[i][j] = 1;
+    this.matrix[j][i] = 1;
+  }
+
+  display() {
+    console.log(this.matrix);
+  }
+}
