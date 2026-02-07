@@ -138,3 +138,36 @@ class DoublyLinkedList {
     }
   }
 }
+
+
+
+//  Problem 127 Implementation of Circular Linked List
+class CircularLinkedList {
+  constructor() {
+    this.head = null;
+  }
+
+  insert(val) {
+    let n = { val, next: null };
+
+    if (!this.head) {
+      this.head = n;
+      n.next = this.head;
+      return;
+    }
+
+    let t = this.head;
+    while (t.next !== this.head) t = t.next;
+
+    t.next = n;
+    n.next = this.head;
+  }
+
+  display(count) {
+    let t = this.head;
+    while (count--) {
+      console.log(t.val);
+      t = t.next;
+    }
+  }
+}
