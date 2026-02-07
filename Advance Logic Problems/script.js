@@ -257,3 +257,26 @@ class GraphAdjMatrix {
     console.log(this.matrix);
   }
 }
+
+
+ 
+//  Problem 132 Breadth First Search (BFS) Traversal of Graph
+function bfs(graph, start) {
+  let visited = {};
+  let queue = [];
+
+  queue.push(start);
+  visited[start] = true;
+
+  while (queue.length) {
+    let v = queue.shift();
+    console.log(v);   // console output
+
+    graph[v].forEach(n => {
+      if (!visited[n]) {
+        visited[n] = true;
+        queue.push(n);
+      }
+    });
+  }
+}
