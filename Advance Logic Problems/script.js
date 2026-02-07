@@ -214,3 +214,26 @@ class MySet {
     delete this.data[val];
   }
 }
+
+
+
+ 
+//  Problem 130 Graph Implementation Using Adjacency List
+class GraphAdjList {
+  constructor() {
+    this.graph = {};
+  }
+
+  addVertex(v) {
+    if (!this.graph[v]) this.graph[v] = [];
+  }
+
+  addEdge(a, b) {
+    this.graph[a].push(b);
+    this.graph[b].push(a);
+  }
+
+  display() {
+    console.log(this.graph);
+  }
+}
