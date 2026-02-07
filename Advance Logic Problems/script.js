@@ -99,3 +99,42 @@ class LinkedList {
 const list = new LinkedList();
 list.append(1); list.append(2); list.append(3);
 list.print(); // 1 -> 2 -> 3
+
+
+//  Problem 126 Implementation of Doubly Linked List
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.prev = null;
+    this.next = null;
+  }
+}
+
+class DoublyLinkedList {
+  constructor() {
+    this.head = null;
+  }
+
+  insert(val) {
+    let n = new Node(val);
+
+    if (!this.head) {
+      this.head = n;
+      return;
+    }
+
+    let t = this.head;
+    while (t.next) t = t.next;
+
+    t.next = n;
+    n.prev = t;
+  }
+
+  display() {
+    let t = this.head;
+    while (t) {
+      console.log(t.val);
+      t = t.next;
+    }
+  }
+}
