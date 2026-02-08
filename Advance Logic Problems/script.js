@@ -372,3 +372,33 @@ const directed = {
 };
 
 console.log(hasCycleDirected(directed));
+
+
+//  Problem 135 Shortest Path using BFS
+function bfsShortestPath(graph, start, end) {
+  const queue = [[start, 0]];
+  const visited = new Set([start]);
+
+  while (queue.length) {
+    const [node, dist] = queue.shift();
+    if (node === end) return dist;
+
+    for (let nbr of graph[node]) {
+      if (!visited.has(nbr)) {
+        visited.add(nbr);
+        queue.push([nbr, dist + 1]);
+      }
+    }
+  }
+  return -1;
+}
+
+// Call
+const graphBFS = {
+  A: ["B", "C"],
+  B: ["D"],
+  C: ["D"],
+  D: []
+};
+
+console.log(bfsShortestPath(graphBFS, "A", "D"));
