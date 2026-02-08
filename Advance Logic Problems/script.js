@@ -438,3 +438,29 @@ const graphDij = {
 };
 
 console.log(dijkstra(graphDij, "A"));
+
+
+//  Problem 137 Bellman-Ford Algorithm
+function bellmanFord(edges, vertices, start) {
+  const dist = Array(vertices).fill(Infinity);
+  dist[start] = 0;
+
+  for (let i = 0; i < vertices - 1; i++) {
+    for (let [u, v, w] of edges) {
+      if (dist[u] !== Infinity && dist[u] + w < dist[v]) {
+        dist[v] = dist[u] + w;
+      }
+    }
+  }
+  return dist;
+}
+
+// Call
+const edges = [
+  [0, 1, 4],
+  [0, 2, 5],
+  [1, 2, -3],
+  [2, 3, 4]
+];
+
+console.log(bellmanFord(edges, 4, 0));
