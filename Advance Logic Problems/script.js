@@ -464,3 +464,26 @@ const edges = [
 ];
 
 console.log(bellmanFord(edges, 4, 0));
+
+
+//  Problem 138 Merge Sort
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+
+  const mid = Math.floor(arr.length / 2);
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
+
+  return merge(left, right);
+}
+
+function merge(a, b) {
+  let res = [];
+  while (a.length && b.length) {
+    res.push(a[0] < b[0] ? a.shift() : b.shift());
+  }
+  return res.concat(a, b);
+}
+
+// Call
+console.log(mergeSort([5, 3, 8, 4, 2]));
