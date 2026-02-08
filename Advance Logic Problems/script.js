@@ -280,3 +280,28 @@ function bfs(graph, start) {
     });
   }
 }
+
+
+ 
+//  Problem 133 DFS Traversal of Graph
+function dfs(graph, start, visited = new Set()) {
+  visited.add(start);
+  console.log(start);
+
+  for (let neighbor of graph[start]) {
+    if (!visited.has(neighbor)) {
+      dfs(graph, neighbor, visited);
+    }
+  }
+}
+
+// Call
+const graphDFS = {
+  A: ["B", "C"],
+  B: ["D"],
+  C: ["E"],
+  D: [],
+  E: []
+};
+
+dfs(graphDFS, "A");
