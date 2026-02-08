@@ -402,3 +402,39 @@ const graphBFS = {
 };
 
 console.log(bfsShortestPath(graphBFS, "A", "D"));
+
+
+//  Problem 136 Dijkstra’s Algorithm
+function dijkstra(graph, start) {
+  const dist = {};
+  const visited = new Set();
+
+  for (let node in graph) dist[node] = Infinity;
+  dist[start] = 0;
+
+  while (visited.size < Object.keys(graph).length) {
+    let minNode = null;
+    for (let node in dist) {
+      if (!visited.has(node) &&
+          (minNode === null || dist[node] < dist[minNode])) {
+        minNode = node;
+      }
+    }
+
+    visited.add(minNode);
+    for (let [nbr, weight] of graph[minNode]) {
+      dist[nbr] = Math.min(dist[nbr], dist[minNode] + weight);
+    }
+  }
+  return dist;
+}
+
+// Call
+const graphDij = {
+  A: [["B", 1], ["C", 4]],
+  B: [["C", 2], ["D", 5]],
+  C: [["D", 1]],
+  D: []
+};
+
+console.log(dijkstra(graphDij, "A"));
