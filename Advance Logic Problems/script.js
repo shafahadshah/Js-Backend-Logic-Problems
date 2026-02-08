@@ -305,3 +305,70 @@ const graphDFS = {
 };
 
 dfs(graphDFS, "A");
+
+
+ 
+//  Problem 134 Detect Cycle in Graph Undirected Graph
+function hasCycleUndirected(graph) {
+  const visited = new Set();
+
+  function dfs(node, parent) {
+    visited.add(node);
+    for (let nbr of graph[node]) {
+      if (!visited.has(nbr)) {
+        if (dfs(nbr, node)) return true;
+      } else if (nbr !== parent) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  for (let node in graph) {
+    if (!visited.has(node) && dfs(node, null)) return true;
+  }
+  return false;
+}
+
+// Call
+const undirected = {
+  A: ["B"],
+  B: ["A", "C"],
+  C: ["B", "A"]
+};
+
+console.log(hasCycleUndirected(undirected));
+ 
+//  Problem 134 Detect Cycle in Graph Directed Graph
+function hasCycleDirected(graph) {
+  const visited = new Set();
+  const stack = new Set();
+
+  function dfs(node) {
+    if (stack.has(node)) return true;
+    if (visited.has(node)) return false;
+
+    visited.add(node);
+    stack.add(node);
+
+    for (let nbr of graph[node]) {
+      if (dfs(nbr)) return true;
+    }
+    stack.delete(node);
+    return false;
+  }
+
+  for (let node in graph) {
+    if (dfs(node)) return true;
+  }
+  return false;
+}
+
+// Call
+const directed = {
+  A: ["B"],
+  B: ["C"],
+  C: ["A"]
+};
+
+console.log(hasCycleDirected(directed));
