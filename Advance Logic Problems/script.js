@@ -609,3 +609,31 @@ function LCA(root, p, q) {
 }
 
 console.log(LCA(bst, 3, 7));
+
+
+//  Problem 145 Build Trie from Word List
+class TrieNode {
+  constructor() {
+    this.children = {};
+    this.end = false;
+  }
+}
+
+class Trie {
+  constructor() {
+    this.root = new TrieNode();
+  }
+
+  insert(word) {
+    let node = this.root;
+    for (let ch of word) {
+      if (!node.children[ch]) node.children[ch] = new TrieNode();
+      node = node.children[ch];
+    }
+    node.end = true;
+  }
+}
+
+let trie = new Trie();
+["cat", "car", "dog"].forEach(w => trie.insert(w));
+console.log(trie);
