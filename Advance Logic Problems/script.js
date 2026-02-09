@@ -658,3 +658,35 @@ Trie.prototype.autocomplete = function(prefix) {
 };
 
 console.log(trie.autocomplete("ca"));
+
+
+//  Problem 147 Implement LRU Cache
+class LRUCache {
+  constructor(capacity) {
+    this.cap = capacity;
+    this.map = new Map();
+  }
+
+  get(key) {
+    if (!this.map.has(key)) return -1;
+    let val = this.map.get(key);
+    this.map.delete(key);
+    this.map.set(key, val);
+    return val;
+  }
+
+  put(key, val) {
+    if (this.map.has(key)) this.map.delete(key);
+    else if (this.map.size === this.cap)
+      this.map.delete(this.map.keys().next().value);
+
+    this.map.set(key, val);
+  }
+}
+
+let lru = new LRUCache(2);
+lru.put(1, 1);
+lru.put(2, 2);
+console.log(lru.get(1)); // 1
+lru.put(3, 3);
+console.log(lru.get(2)); // -1
