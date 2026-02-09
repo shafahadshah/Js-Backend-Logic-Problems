@@ -504,3 +504,33 @@ function quickSort(arr) {
 
 // Call
 console.log(quickSort([10, 7, 8, 9, 1, 5]));
+
+
+//  Problem 140 Heap Sort (Max Heap)
+function heapSort(arr) {
+  let n = arr.length;
+
+  const heapify = (i, size) => {
+    let largest = i;
+    let l = 2 * i + 1;
+    let r = 2 * i + 2;
+
+    if (l < size && arr[l] > arr[largest]) largest = l;
+    if (r < size && arr[r] > arr[largest]) largest = r;
+
+    if (largest !== i) {
+      [arr[i], arr[largest]] = [arr[largest], arr[i]];
+      heapify(largest, size);
+    }
+  };
+
+  for (let i = Math.floor(n / 2) - 1; i >= 0; i--) heapify(i, n);
+  for (let i = n - 1; i > 0; i--) {
+    [arr[0], arr[i]] = [arr[i], arr[0]];
+    heapify(0, i);
+  }
+  return arr;
+}
+
+console.log(heapSort([4, 10, 3, 5, 1]));
+
