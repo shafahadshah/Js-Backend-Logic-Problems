@@ -637,3 +637,24 @@ class Trie {
 let trie = new Trie();
 ["cat", "car", "dog"].forEach(w => trie.insert(w));
 console.log(trie);
+
+
+//  Problem 146 Word Autocomplete Using Trie
+Trie.prototype.autocomplete = function(prefix) {
+  let node = this.root;
+  for (let ch of prefix) {
+    if (!node.children[ch]) return [];
+    node = node.children[ch];
+  }
+
+  let res = [];
+  const dfs = (n, path) => {
+    if (n.end) res.push(path);
+    for (let c in n.children) dfs(n.children[c], path + c);
+  };
+
+  dfs(node, prefix);
+  return res;
+};
+
+console.log(trie.autocomplete("ca"));
