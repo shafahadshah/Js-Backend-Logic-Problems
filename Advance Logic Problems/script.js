@@ -534,3 +534,23 @@ function heapSort(arr) {
 
 console.log(heapSort([4, 10, 3, 5, 1]));
 
+
+
+//  Problem 141 Build Binary Tree (from array)
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.left = this.right = null;
+  }
+}
+
+function buildTree(arr, i = 0) {
+  if (i >= arr.length || arr[i] === null) return null;
+  let root = new Node(arr[i]);
+  root.left = buildTree(arr, 2 * i + 1);
+  root.right = buildTree(arr, 2 * i + 2);
+  return root;
+}
+
+let tree = buildTree([1, 2, 3, 4, 5]);
+console.log(tree);
