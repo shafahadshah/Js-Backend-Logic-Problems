@@ -598,3 +598,14 @@ function isBalanced(root) {
 }
 
 console.log(isBalanced(tree));
+
+
+//  Problem 144 Lowest Common Ancestor in BST
+function LCA(root, p, q) {
+  if (!root) return null;
+  if (p < root.val && q < root.val) return LCA(root.left, p, q);
+  if (p > root.val && q > root.val) return LCA(root.right, p, q);
+  return root.val;
+}
+
+console.log(LCA(bst, 3, 7));
