@@ -554,3 +554,31 @@ function buildTree(arr, i = 0) {
 
 let tree = buildTree([1, 2, 3, 4, 5]);
 console.log(tree);
+
+
+
+//  Problem 142 BST Insert / Search / Delete
+class BST {
+  constructor(val) {
+    this.val = val;
+    this.left = this.right = null;
+  }
+
+  insert(val) {
+    if (val < this.val)
+      this.left ? this.left.insert(val) : this.left = new BST(val);
+    else
+      this.right ? this.right.insert(val) : this.right = new BST(val);
+  }
+
+  search(val) {
+    if (this.val === val) return true;
+    if (val < this.val) return this.left?.search(val) || false;
+    return this.right?.search(val) || false;
+  }
+}
+
+let bst = new BST(10);
+[5, 15, 3, 7].forEach(v => bst.insert(v));
+console.log(bst.search(7)); // true
+console.log(bst.search(20)); // false
