@@ -582,3 +582,19 @@ let bst = new BST(10);
 [5, 15, 3, 7].forEach(v => bst.insert(v));
 console.log(bst.search(7)); // true
 console.log(bst.search(20)); // false
+
+
+
+//  Problem 143 Check if Tree is Balanced
+function isBalanced(root) {
+  function height(node) {
+    if (!node) return 0;
+    let l = height(node.left);
+    let r = height(node.right);
+    if (l === -1 || r === -1 || Math.abs(l - r) > 1) return -1;
+    return Math.max(l, r) + 1;
+  }
+  return height(root) !== -1;
+}
+
+console.log(isBalanced(tree));
