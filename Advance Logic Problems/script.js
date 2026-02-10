@@ -779,3 +779,20 @@ const jq = new JobQueue();
 jq.add(() => new Promise(r => setTimeout(() => (console.log("Job 1"), r()), 500)));
 jq.add(() => Promise.resolve(console.log("Job 2")));
 
+ 
+
+//  Problem 150 Retry Logic with Exponential Backoff
+async function retry(fn, retries = 3, delay = 200) {
+  try {
+    return await fn();
+  } catch (e) {
+    if (retries === 0) throw e;
+    await new Promise(r => setTimeout(r, delay));
+    return retry(fn, retries - 1, delay * 2);
+  }
+}
+
+// demo
+retry(() => Math.random() > 0.7 ? "OK" : Promise.reject("Fail"))
+  .then(console.log)
+  .catch(console.error);
