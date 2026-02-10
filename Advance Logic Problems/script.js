@@ -693,3 +693,55 @@ console.log(lru.get(2)); // -1
 
 
  
+
+//  Problem 148 LFU Cache (O(1) average)
+class LFUCache {
+  constructor(capacity) {
+    this.cap = capacity;
+    this.minFreq = 0;
+    this.keyMap = new Map(); // key -> {val, freq}
+    this.freqMap = new Map(); // freq -> Set(keys)
+  }
+
+  get(key) {
+    if (!this.keyMap.has(key)) return -1;
+    this._updateFreq(key);
+    return this.keyMap.get(key).val;
+  }
+
+  put(key, val) {
+    if (this.cap === 0) return;
+
+    if (this.keyMap.has(key)) {
+      this.keyMap.get(key).val = val;
+      this._updateFreq(key);
+      return;
+    }
+
+    if (this.keyMap.size >= this.cap) {
+      const evictKey = this.freqMap.get(this.minFreq).values().next().value;
+      this.freqMap.get(this.minFreq).delete(evictKey);
+      this.keyMap.delete(evictKey);
+    }
+
+    this.keyMap.set(key, { val, freq: 1 });
+    this.freqMap.set(1, (this.freqMap.get(1) || new Set()).add(key));
+    this.minFreq = 1;
+  }
+
+  _updateFreq(key) {
+    const obj = this.keyMap.get(key);
+    const f = obj.freq;
+    this.freqMap.get(f).delete(key);
+    if (f === this.minFreq && this.freqMap.get(f).size === 0) this.minFreq++;
+    obj.freq++;
+    this.freqMap.set(obj.freq, (this.freqMap.get(obj.freq) || new Set()).add(key));
+  }
+}
+
+// demo
+const lfu = new LFUCache(2);
+lfu.put(1, 1); lfu.put(2, 2);
+console.log(lfu.get(1)); // 1
+lfu.put(3, 3);
+console.log(lfu.get(2)); // -1
