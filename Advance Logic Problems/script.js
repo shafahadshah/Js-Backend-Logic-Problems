@@ -747,3 +747,35 @@ lfu.put(3, 3);
 console.log(lfu.get(2)); // -1
 
 
+ 
+
+//  Problem 149 Job Queue Logic
+class JobQueue {
+  constructor() {
+    this.queue = [];
+    this.running = false;
+  }
+
+  add(job) {
+    this.queue.push(job);
+    this.run();
+  }
+
+  async run() {
+    if (this.running) return;
+    this.running = true;
+
+    while (this.queue.length) {
+      const job = this.queue.shift();
+      await job();
+    }
+
+    this.running = false;
+  }
+}
+
+// demo
+const jq = new JobQueue();
+jq.add(() => new Promise(r => setTimeout(() => (console.log("Job 1"), r()), 500)));
+jq.add(() => Promise.resolve(console.log("Job 2")));
+
