@@ -845,3 +845,19 @@ const lb = new LeakyBucket(2, 1000);
 console.log(lb.add(() => console.log("Req 1")));
 console.log(lb.add(() => console.log("Req 2")));
 console.log(lb.add(() => console.log("Rejected")));
+
+ 
+
+//  Problem 153 Base64 Encode / Decode
+// encode
+const encodeBase64 = str =>
+  Buffer.from(str, "utf8").toString("base64");
+
+// decode
+const decodeBase64 = str =>
+  Buffer.from(str, "base64").toString("utf8");
+
+// demo
+const encoded = encodeBase64("hello world");
+console.log(encoded);
+console.log(decodeBase64(encoded));
