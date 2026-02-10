@@ -821,3 +821,27 @@ class TokenBucket {
 // demo
 const tb = new TokenBucket(3, 1);
 setInterval(() => console.log("Allowed:", tb.allow()), 300);
+
+ 
+
+//  Problem 152 Leaky Bucket Rate Limiter
+class LeakyBucket {
+  constructor(limit, leakRate) {
+    this.queue = [];
+    setInterval(() => {
+      if (this.queue.length) this.queue.shift()();
+    }, leakRate);
+  }
+
+  add(req) {
+    if (this.queue.length >= limit) return false;
+    this.queue.push(req);
+    return true;
+  }
+}
+
+// demo
+const lb = new LeakyBucket(2, 1000);
+console.log(lb.add(() => console.log("Req 1")));
+console.log(lb.add(() => console.log("Req 2")));
+console.log(lb.add(() => console.log("Rejected")));
