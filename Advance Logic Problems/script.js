@@ -796,3 +796,28 @@ async function retry(fn, retries = 3, delay = 200) {
 retry(() => Math.random() > 0.7 ? "OK" : Promise.reject("Fail"))
   .then(console.log)
   .catch(console.error);
+
+ 
+
+//  Problem 151 Token Bucket Rate Limiter
+class TokenBucket {
+  constructor(capacity, refillRate) {
+    this.capacity = capacity;
+    this.tokens = capacity;
+    setInterval(() => {
+      this.tokens = Math.min(this.capacity, this.tokens + refillRate);
+    }, 1000);
+  }
+
+  allow() {
+    if (this.tokens > 0) {
+      this.tokens--;
+      return true;
+    }
+    return false;
+  }
+}
+
+// demo
+const tb = new TokenBucket(3, 1);
+setInterval(() => console.log("Allowed:", tb.allow()), 300);
