@@ -745,3 +745,5 @@ lfu.put(1, 1); lfu.put(2, 2);
 console.log(lfu.get(1)); // 1
 lfu.put(3, 3);
 console.log(lfu.get(2)); // -1
+
+
