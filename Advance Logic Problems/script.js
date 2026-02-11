@@ -920,3 +920,24 @@ function simpleHash(str) {
 
 // Usage
 console.log("Hash:", simpleHash("HelloWorld"));
+
+
+
+ 
+
+//  Problem 157 Simulate Database Filtering
+// Database Filtering
+function filterDB(data, filters) {
+  return data.filter(item =>
+    Object.keys(filters).every(key => item[key] === filters[key])
+  );
+}
+
+// Usage
+const users = [
+  { id: 1, name: "Alice", role: "admin" },
+  { id: 2, name: "Bob", role: "user" },
+  { id: 3, name: "Charlie", role: "user" }
+];
+
+console.log("Filtered:", filterDB(users, { role: "user" }));
