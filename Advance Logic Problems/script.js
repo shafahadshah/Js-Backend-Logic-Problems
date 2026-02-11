@@ -970,3 +970,38 @@ const customers = [
 
 console.log("Inner Join:", joinTables(orders, customers, "userId"));
 console.log("Left Join:", joinTables(orders, customers, "userId", "left"));
+
+
+ 
+
+//  Problem 159 Simulate User Sessions with Expiry
+// Session Manager
+class SessionManager {
+  constructor() {
+    this.sessions = new Map();
+  }
+
+  create(userId, ttlMs) {
+    const token = Math.random().toString(36).slice(2);
+    this.sessions.set(token, { userId, expiry: Date.now() + ttlMs });
+    return token;
+  }
+
+  validate(token) {
+    const session = this.sessions.get(token);
+    if (!session || session.expiry < Date.now()) {
+      this.sessions.delete(token);
+      return false;
+    }
+    return true;
+  }
+}
+
+// Usage
+const sm = new SessionManager();
+const token = sm.create("user1", 2000);
+console.log("Valid:", sm.validate(token));
+
+setTimeout(() => {
+  console.log("After Expiry:", sm.validate(token));
+}, 2500);
