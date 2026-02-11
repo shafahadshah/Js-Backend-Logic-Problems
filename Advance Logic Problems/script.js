@@ -883,3 +883,23 @@ console.log("Encrypted:", encrypted);
 
 const decrypted = caesarCipher(encrypted, 3, true);
 console.log("Decrypted:", decrypted);
+
+
+
+ 
+
+//  Problem 155 XOR Cipher (Encrypt / Decrypt)
+// XOR Cipher
+function xorCipher(str, key) {
+  return str
+    .split("")
+    .map((c, i) => String.fromCharCode(c.charCodeAt(0) ^ key.charCodeAt(i % key.length)))
+    .join("");
+}
+
+// Usage
+const xorEncrypted = xorCipher("SecretMessage", "key");
+console.log("Encrypted:", xorEncrypted);
+
+const xorDecrypted = xorCipher(xorEncrypted, "key");
+console.log("Decrypted:", xorDecrypted);
