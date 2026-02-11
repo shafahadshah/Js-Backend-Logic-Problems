@@ -941,3 +941,32 @@ const users = [
 ];
 
 console.log("Filtered:", filterDB(users, { role: "user" }));
+
+
+ 
+
+//  Problem 158 Simulate Table Joins
+// Table Join
+function joinTables(tableA, tableB, key, type = "inner") {
+  const map = new Map(tableB.map(item => [item[key], item]));
+  
+  return tableA.map(a => {
+    const match = map.get(a[key]);
+    if (match) return { ...a, ...match };
+    if (type === "left") return { ...a };
+    return null;
+  }).filter(Boolean);
+}
+
+// Usage
+const orders = [
+  { orderId: 1, userId: 1 },
+  { orderId: 2, userId: 2 }
+];
+
+const customers = [
+  { userId: 1, name: "Alice" }
+];
+
+console.log("Inner Join:", joinTables(orders, customers, "userId"));
+console.log("Left Join:", joinTables(orders, customers, "userId", "left"));
