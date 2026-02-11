@@ -903,3 +903,20 @@ console.log("Encrypted:", xorEncrypted);
 
 const xorDecrypted = xorCipher(xorEncrypted, "key");
 console.log("Decrypted:", xorDecrypted);
+
+
+
+ 
+
+//  Problem 156 Simple Hash Function
+// Simple Hash (Fast DJB2 variant)
+function simpleHash(str) {
+  let hash = 5381;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash * 33) ^ str.charCodeAt(i);
+  }
+  return hash >>> 0; // unsigned
+}
+
+// Usage
+console.log("Hash:", simpleHash("HelloWorld"));
