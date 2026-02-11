@@ -861,3 +861,25 @@ const decodeBase64 = str =>
 const encoded = encodeBase64("hello world");
 console.log(encoded);
 console.log(decodeBase64(encoded));
+
+
+ 
+
+//  Problem 154 Caesar Cipher (Encrypt / Decrypt)
+// Caesar Cipher
+function caesarCipher(str, shift, decrypt = false) {
+  const s = decrypt ? -shift : shift;
+  return str.replace(/[a-z]/gi, char => {
+    const base = char <= 'Z' ? 65 : 97;
+    return String.fromCharCode(
+      ((char.charCodeAt(0) - base + s + 26) % 26) + base
+    );
+  });
+}
+
+// Usage
+const encrypted = caesarCipher("HelloWorld", 3);
+console.log("Encrypted:", encrypted);
+
+const decrypted = caesarCipher(encrypted, 3, true);
+console.log("Decrypted:", decrypted);
