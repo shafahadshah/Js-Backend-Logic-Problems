@@ -1005,3 +1005,27 @@ console.log("Valid:", sm.validate(token));
 setTimeout(() => {
   console.log("After Expiry:", sm.validate(token));
 }, 2500);
+
+ 
+
+//  Problem 160 Role-Based Access Control (RBAC)
+// RBAC
+class RBAC {
+  constructor() {
+    this.roles = {
+      admin: ["create", "read", "update", "delete"],
+      user: ["read"],
+      editor: ["read", "update"]
+    };
+  }
+
+  can(role, action) {
+    return this.roles[role]?.includes(action) || false;
+  }
+}
+
+// Usage
+const rbac = new RBAC();
+
+console.log("Admin delete:", rbac.can("admin", "delete"));
+console.log("User delete:", rbac.can("user", "delete"));
