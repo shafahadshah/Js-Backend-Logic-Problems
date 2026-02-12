@@ -1029,3 +1029,47 @@ const rbac = new RBAC();
 
 console.log("Admin delete:", rbac.can("admin", "delete"));
 console.log("User delete:", rbac.can("user", "delete"));
+
+ 
+
+//  Problem 161 Simulate Locking / Mutex Logic
+class Mutex {
+  constructor() {
+    this.locked = false;
+    this.queue = [];
+  }
+
+  lock() {
+    return new Promise(resolve => {
+      if (!this.locked) {
+        this.locked = true;
+        resolve();
+      } else {
+        this.queue.push(resolve);
+      }
+    });
+  }
+
+  unlock() {
+    if (this.queue.length > 0) {
+      const next = this.queue.shift();
+      next();
+    } else {
+      this.locked = false;
+    }
+  }
+}
+
+// Usage
+const mutex = new Mutex();
+
+async function task(name) {
+  await mutex.lock();
+  console.log(`${name} acquired lock`);
+  await new Promise(r => setTimeout(r, 1000));
+  console.log(`${name} releasing lock`);
+  mutex.unlock();
+}
+
+task("A");
+task("B");
