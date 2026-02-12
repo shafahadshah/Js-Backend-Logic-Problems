@@ -1213,3 +1213,59 @@ async function generateJWT(payload, secret) {
 // Usage
 generateJWT({ user: "john", exp: Date.now() }, "secretKey")
   .then(token => console.log("JWT:", token));
+
+  
+
+//  Problem 168 Verify JWT Manually (HS256)
+async function verifyJWT(token, secret) {
+  try {
+    const [headerB64, payloadB64, signatureB64] = token.split(".");
+    if (!headerB64 || !payloadB64 || !signatureB64)
+      throw new Error("Invalid token format");
+
+    const base64urlDecode = str =>
+      JSON.parse(
+        atob(str.replace(/-/g, "+").replace(/_/g, "/"))
+      );
+
+    const header = base64urlDecode(headerB64);
+    const payload = base64urlDecode(payloadB64);
+
+    if (header.alg !== "HS256")
+      throw new Error("Unsupported algorithm");
+
+    const data = `${headerB64}.${payloadB64}`;
+
+    const key = await crypto.subtle.importKey(
+      "raw",
+      new TextEncoder().encode(secret),
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["sign"]
+    );
+
+    const expectedSignature = await crypto.subtle.sign(
+      "HMAC",
+      key,
+      new TextEncoder().encode(data)
+    );
+
+    const base64urlEncodeBuffer = buffer =>
+      btoa(String.fromCharCode(...new Uint8Array(buffer)))
+        .replace(/=/g, "")
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_");
+
+    const expectedB64 = base64urlEncodeBuffer(expectedSignature);
+
+    if (expectedB64 !== signatureB64)
+      throw new Error("Invalid signature");
+
+    if (payload.exp && Date.now() > payload.exp)
+      throw new Error("Token expired");
+
+    return { valid: true, payload };
+  } catch (err) {
+    return { valid: false, error: err.message };
+  }
+}
