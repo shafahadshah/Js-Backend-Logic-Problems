@@ -1073,3 +1073,14 @@ async function task(name) {
 
 task("A");
 task("B");
+
+ 
+
+//  Problem 162 Data Deduplication Logic
+function dedupeArray(arr) {
+  return [...new Set(arr)];
+}
+
+// Usage
+const nums = [1, 2, 2, 3, 4, 4, 5];
+console.log("Deduped:", dedupeArray(nums));
