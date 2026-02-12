@@ -1129,3 +1129,19 @@ const xmlData = `
 </person>`;
 
 console.log(parseXML(xmlData));
+
+ 
+
+//  Problem 165 JSON Validation
+function isValidJSON(str) {
+  try {
+    JSON.parse(str);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// Usage
+console.log(isValidJSON('{"name":"John"}')); // true
+console.log(isValidJSON('{name:"John"}'));   // false
