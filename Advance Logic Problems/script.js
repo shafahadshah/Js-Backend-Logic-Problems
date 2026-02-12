@@ -1107,3 +1107,25 @@ John,25
 Jane,30`;
 
 console.log(parseCSV(csv));
+
+ 
+
+//  Problem 164 XML Parser Logic
+function parseXML(xmlStr) {
+  const parser = new DOMParser();
+  const xml = parser.parseFromString(xmlStr, "application/xml");
+
+  return {
+    name: xml.querySelector("name")?.textContent,
+    age: xml.querySelector("age")?.textContent
+  };
+}
+
+// Usage
+const xmlData = `
+<person>
+  <name>John</name>
+  <age>25</age>
+</person>`;
+
+console.log(parseXML(xmlData));
