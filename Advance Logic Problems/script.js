@@ -1170,3 +1170,46 @@ console.log("Serialized:", serialized);
 
 const parsed = deserialize(serialized);
 console.log("Deserialized:", parsed);
+
+
+//  Problem 167 Generate JWT Manually (HS256)
+async function generateJWT(payload, secret) {
+  const header = { alg: "HS256", typ: "JWT" };
+
+  const base64url = obj =>
+    btoa(JSON.stringify(obj))
+      .replace(/=/g, "")
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_");
+
+  const encodedHeader = base64url(header);
+  const encodedPayload = base64url(payload);
+  const data = `${encodedHeader}.${encodedPayload}`;
+
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+
+  const signature = await crypto.subtle.sign(
+    "HMAC",
+    key,
+    new TextEncoder().encode(data)
+  );
+
+  const base64Signature = btoa(
+    String.fromCharCode(...new Uint8Array(signature))
+  )
+    .replace(/=/g, "")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
+
+  return `${data}.${base64Signature}`;
+}
+
+// Usage
+generateJWT({ user: "john", exp: Date.now() }, "secretKey")
+  .then(token => console.log("JWT:", token));
