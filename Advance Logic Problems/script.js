@@ -1084,3 +1084,26 @@ function dedupeArray(arr) {
 // Usage
 const nums = [1, 2, 2, 3, 4, 4, 5];
 console.log("Deduped:", dedupeArray(nums));
+
+ 
+
+//  Problem 163 CSV Parser Logic
+function parseCSV(str) {
+  const [headerLine, ...rows] = str.trim().split("\n");
+  const headers = headerLine.split(",");
+
+  return rows.map(row => {
+    const values = row.split(",");
+    return headers.reduce((obj, key, i) => {
+      obj[key.trim()] = values[i].trim();
+      return obj;
+    }, {});
+  });
+}
+
+// Usage
+const csv = `name,age
+John,25
+Jane,30`;
+
+console.log(parseCSV(csv));
