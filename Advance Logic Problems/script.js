@@ -1145,3 +1145,28 @@ function isValidJSON(str) {
 // Usage
 console.log(isValidJSON('{"name":"John"}')); // true
 console.log(isValidJSON('{name:"John"}'));   // false
+
+ 
+
+//  Problem 166 Serialize / Deserialize Object Manually
+function serialize(obj) {
+  return Object.entries(obj)
+    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+    .join("&");
+}
+
+function deserialize(str) {
+  return str.split("&").reduce((obj, pair) => {
+    const [k, v] = pair.split("=");
+    obj[decodeURIComponent(k)] = decodeURIComponent(v);
+    return obj;
+  }, {});
+}
+
+// Usage
+const user = { name: "John", age: 25 };
+const serialized = serialize(user);
+console.log("Serialized:", serialized);
+
+const parsed = deserialize(serialized);
+console.log("Deserialized:", parsed);
