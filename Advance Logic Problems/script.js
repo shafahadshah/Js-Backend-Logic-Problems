@@ -1346,3 +1346,16 @@ function cacheRatio(hits, misses) {
 }
 
 console.log(cacheRatio(80, 20));
+
+
+
+  
+
+//  Problem 174 Session Expiration Check Logic
+function isSessionExpired(createdAt, durationMs) {
+  const now = Date.now();
+  return now > createdAt + durationMs;
+}
+
+const created = Date.now() - 5000;
+console.log(isSessionExpired(created, 3000));
