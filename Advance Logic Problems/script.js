@@ -1269,3 +1269,33 @@ async function verifyJWT(token, secret) {
     return { valid: false, error: err.message };
   }
 }
+
+  
+
+//  Problem 169 Generate Secure Random Token
+function generateSecureToken(bytes = 32) {
+  const array = new Uint8Array(bytes);
+  crypto.getRandomValues(array);
+  return Array.from(array)
+    .map(b => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+// Usage
+console.log("Secure Token:", generateSecureToken());
+
+
+
+  
+
+//  Problem 170 Password Hash Simulation
+const crypto = require("crypto");
+
+function hashPassword(password) {
+  return crypto
+    .createHash("sha256")
+    .update(password)
+    .digest("hex");
+}
+
+console.log(hashPassword("MyPass123"));
