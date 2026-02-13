@@ -1299,3 +1299,20 @@ function hashPassword(password) {
 }
 
 console.log(hashPassword("MyPass123"));
+
+
+  
+
+//  Problem 171 Password Verification Simulation
+const crypto = require("crypto");
+
+function hashPassword(password) {
+  return crypto.createHash("sha256").update(password).digest("hex");
+}
+
+function verifyPassword(password, storedHash) {
+  return hashPassword(password) === storedHash;
+}
+
+const stored = hashPassword("MyPass123");
+console.log(verifyPassword("MyPass123", stored));
