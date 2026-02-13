@@ -1378,3 +1378,24 @@ createSession("tenantA", "user1");
 createSession("tenantB", "user2");
 
 console.log([...sessions.entries()]);
+
+
+  
+
+//  Problem 176 Rate Limit Per Minute Logic
+function isAllowed(requestTimestamps, limit) {
+  const oneMinuteAgo = Date.now() - 60000;
+
+  const recentRequests = requestTimestamps.filter(
+    ts => ts > oneMinuteAgo
+  );
+
+  return recentRequests.length < limit;
+}
+
+const calls = [
+  Date.now() - 10000,
+  Date.now() - 2000
+];
+
+console.log(isAllowed(calls, 5));
