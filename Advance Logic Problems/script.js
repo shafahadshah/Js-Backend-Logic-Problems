@@ -1316,3 +1316,4 @@ function verifyPassword(password, storedHash) {
 
 const stored = hashPassword("MyPass123");
 console.log(verifyPassword("MyPass123", stored));
+
