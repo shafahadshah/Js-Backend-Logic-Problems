@@ -1359,3 +1359,22 @@ function isSessionExpired(createdAt, durationMs) {
 
 const created = Date.now() - 5000;
 console.log(isSessionExpired(created, 3000));
+
+
+
+  
+
+//  Problem 175 Multi-Tenant Session Simulation
+const sessions = new Map();
+
+function createSession(tenantId, userId) {
+  const key = `${tenantId}:${userId}`;
+  sessions.set(key, {
+    loginTime: Date.now()
+  });
+}
+
+createSession("tenantA", "user1");
+createSession("tenantB", "user2");
+
+console.log([...sessions.entries()]);
