@@ -1317,3 +1317,16 @@ function verifyPassword(password, storedHash) {
 const stored = hashPassword("MyPass123");
 console.log(verifyPassword("MyPass123", stored));
 
+
+
+  
+
+//  Problem 172 Compute Average Request Time
+function averageRequestTime(times) {
+  if (!times.length) return 0;
+
+  const total = times.reduce((sum, t) => sum + t, 0);
+  return total / times.length;
+}
+
+console.log(averageRequestTime([120, 200, 150, 100]));
