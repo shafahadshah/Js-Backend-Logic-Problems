@@ -1330,3 +1330,19 @@ function averageRequestTime(times) {
 }
 
 console.log(averageRequestTime([120, 200, 150, 100]));
+
+
+
+  
+
+//  Problem 173 Compute Cache Hit/Miss Ratio
+function cacheRatio(hits, misses) {
+  const total = hits + misses;
+
+  return {
+    hitRatio: total ? hits / total : 0,
+    missRatio: total ? misses / total : 0
+  };
+}
+
+console.log(cacheRatio(80, 20));
