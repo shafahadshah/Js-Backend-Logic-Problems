@@ -1468,3 +1468,22 @@ function getTimeDifference(ts1, ts2) {
 }
 
 console.log(getTimeDifference("2025-01-01", "2025-01-03"));
+
+
+  
+
+//  Problem 180 Generate Date Ranges
+function generateDateRange(start, end) {
+  const result = [];
+  let current = new Date(start);
+  const last = new Date(end);
+
+  while (current <= last) {
+    result.push(current.toISOString().split("T")[0]);
+    current.setDate(current.getDate() + 1);
+  }
+
+  return result;
+}
+
+console.log(generateDateRange("2025-01-01", "2025-01-05"));
