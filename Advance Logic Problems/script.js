@@ -1434,3 +1434,19 @@ class RateLimiter {
 // Usage
 const limiter = new RateLimiter(5);
 console.log(limiter.isAllowed("user1"));
+
+
+  
+
+//  Problem 178 Validate Timezone Strings
+function isValidTimezone(tz) {
+  try {
+    Intl.DateTimeFormat(undefined, { timeZone: tz });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+console.log(isValidTimezone("America/New_York")); // true
+console.log(isValidTimezone("Invalid/Zone"));     // false
