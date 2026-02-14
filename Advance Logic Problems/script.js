@@ -1450,3 +1450,21 @@ function isValidTimezone(tz) {
 
 console.log(isValidTimezone("America/New_York")); // true
 console.log(isValidTimezone("Invalid/Zone"));     // false
+
+
+  
+
+//  Problem 179 Calculate Time Differences Between Timestamps
+function getTimeDifference(ts1, ts2) {
+  const diff = Math.abs(new Date(ts2) - new Date(ts1));
+
+  return {
+    milliseconds: diff,
+    seconds: Math.floor(diff / 1000),
+    minutes: Math.floor(diff / 60000),
+    hours: Math.floor(diff / 3600000),
+    days: Math.floor(diff / 86400000)
+  };
+}
+
+console.log(getTimeDifference("2025-01-01", "2025-01-03"));
