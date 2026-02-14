@@ -58,3 +58,52 @@ class DistributedCache {
 const cache = new DistributedCache(["Node1", "Node2", "Node3"]);
 cache.set("user1", "data");
 console.log(cache.get("user1"));
+
+
+
+// Problem 183 Advanced Event Emitter
+class EventEmitter {
+  constructor() {
+    this.events = new Map();
+  }
+
+  on(event, listener) {
+    if (!this.events.has(event)) {
+      this.events.set(event, new Set());
+    }
+    this.events.get(event).add(listener); // uniqueness via Set
+  }
+
+  once(event, listener) {
+    const wrapper = (...args) => {
+      listener(...args);
+      this.off(event, wrapper);
+    };
+    this.on(event, wrapper);
+  }
+
+  off(event, listener) {
+    this.events.get(event)?.delete(listener);
+  }
+
+  emit(event, ...args) {
+    if (!this.events.has(event)) return false;
+    for (const listener of this.events.get(event)) {
+      listener(...args);
+    }
+    return true;
+  }
+}
+
+// Usage
+const emitter = new EventEmitter();
+
+const log = data => console.log("Event:", data);
+
+emitter.on("message", log);
+emitter.on("message", log); // duplicate ignored
+emitter.emit("message", "Hello");
+
+emitter.once("onceEvent", msg => console.log("Once:", msg));
+emitter.emit("onceEvent", "Run 1");
+emitter.emit("onceEvent", "Run 2");
