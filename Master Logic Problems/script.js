@@ -33,3 +33,28 @@ class ConsistentHash {
 // Usage
 const ch = new ConsistentHash(["A", "B", "C"]);
 console.log(ch.getNode("user123"));
+
+
+
+// Problem 182 Distributed Cache Logic
+class DistributedCache {
+  constructor(nodes = []) {
+    this.hashRing = new ConsistentHash(nodes);
+    this.store = new Map(); // node => Map()
+    nodes.forEach(n => this.store.set(n, new Map()));
+  }
+
+  set(key, value) {
+    const node = this.hashRing.getNode(key);
+    this.store.get(node).set(key, value);
+  }
+
+  get(key) {
+    const node = this.hashRing.getNode(key);
+    return this.store.get(node).get(key);
+  }
+}
+
+const cache = new DistributedCache(["Node1", "Node2", "Node3"]);
+cache.set("user1", "data");
+console.log(cache.get("user1"));
