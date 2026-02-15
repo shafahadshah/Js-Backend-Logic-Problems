@@ -273,3 +273,34 @@ const r1 = new Replica("R1");
 master.subscribe(r1);
 master.write("x", 100);
 console.log(r1.data); // {x:100}
+
+
+
+// Problem 188 Write-Ahead Log (WAL) Simulation
+class WAL {
+  constructor() {
+    this.log = [];
+    this.data = {};
+  }
+
+  write(key, value) {
+    this.log.push({ key, value }); // log first
+    this.apply();
+  }
+
+  apply() {
+    while (this.log.length) {
+      const { key, value } = this.log.shift();
+      this.data[key] = value;
+    }
+  }
+
+  recover() {
+    this.apply();
+  }
+}
+
+// ✅ Test
+const wal = new WAL();
+wal.write("a", 10);
+console.log(wal.data); // {a:10}
