@@ -343,3 +343,28 @@ async function mockFetch(url) {
 
 // ✅ Test
 crawl("A", mockFetch).then(console.log);
+
+
+
+
+// Problem 190 Sitemap Generator Logic
+function generateSitemap(urls) {
+  const unique = [...new Set(urls)].sort();
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset>
+${unique.map(url => `
+  <url>
+    <loc>${url}</loc>
+  </url>`).join("")}
+</urlset>`;
+}
+
+// ✅ Test
+const urls = [
+  "https://example.com",
+  "https://example.com/about",
+  "https://example.com",
+];
+
+console.log(generateSitemap(urls));
