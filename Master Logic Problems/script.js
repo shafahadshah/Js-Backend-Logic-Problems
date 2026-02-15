@@ -234,3 +234,42 @@ tx.set("b", 3);
 console.log(tx.state); // {a:2,b:3}
 tx.rollback();
 console.log(tx.state); // {a:1}
+
+
+
+// Problem 187 Logical Replication Simulation
+class Master {
+  constructor() {
+    this.data = {};
+    this.subscribers = new Set();
+  }
+
+  subscribe(replica) {
+    this.subscribers.add(replica);
+  }
+
+  write(key, value) {
+    this.data[key] = value;
+    for (const replica of this.subscribers) {
+      replica.update(key, value);
+    }
+  }
+}
+
+class Replica {
+  constructor(name) {
+    this.name = name;
+    this.data = {};
+  }
+
+  update(key, value) {
+    this.data[key] = value;
+  }
+}
+
+// ✅ Test
+const master = new Master();
+const r1 = new Replica("R1");
+master.subscribe(r1);
+master.write("x", 100);
+console.log(r1.data); // {x:100}
