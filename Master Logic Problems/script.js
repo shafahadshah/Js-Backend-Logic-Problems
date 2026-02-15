@@ -304,3 +304,42 @@ class WAL {
 const wal = new WAL();
 wal.write("a", 10);
 console.log(wal.data); // {a:10}
+
+
+
+
+
+// Problem 189 Build URL Crawler Algorithm
+async function crawl(startUrl, fetchLinks, limit = 10) {
+  const visited = new Set();
+  const queue = [startUrl];
+
+  while (queue.length && visited.size < limit) {
+    const url = queue.shift();
+    if (visited.has(url)) continue;
+
+    console.log("Visiting:", url);
+    visited.add(url);
+
+    const links = await fetchLinks(url);
+    for (const link of links) {
+      if (!visited.has(link)) queue.push(link);
+    }
+  }
+
+  return [...visited];
+}
+
+// ✅ Mock fetch
+async function mockFetch(url) {
+  const map = {
+    A: ["B", "C"],
+    B: ["D"],
+    C: ["D"],
+    D: []
+  };
+  return map[url] || [];
+}
+
+// ✅ Test
+crawl("A", mockFetch).then(console.log);
