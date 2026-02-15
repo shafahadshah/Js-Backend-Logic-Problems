@@ -203,3 +203,34 @@ pq.enqueue("High", 1);
 pq.enqueue("Medium", 3);
 console.log(pq.dequeue()); // High
 console.log(pq.dequeue()); // Medium
+
+
+
+// Problem 186 Transaction Rollback Simulation
+class Transaction {
+  constructor(state = {}) {
+    this.state = { ...state };
+    this.history = [];
+  }
+
+  set(key, value) {
+    this.history.push({ key, prev: this.state[key] });
+    this.state[key] = value;
+  }
+
+  rollback() {
+    while (this.history.length) {
+      const { key, prev } = this.history.pop();
+      if (prev === undefined) delete this.state[key];
+      else this.state[key] = prev;
+    }
+  }
+}
+
+// ✅ Test
+const tx = new Transaction({ a: 1 });
+tx.set("a", 2);
+tx.set("b", 3);
+console.log(tx.state); // {a:2,b:3}
+tx.rollback();
+console.log(tx.state); // {a:1}
