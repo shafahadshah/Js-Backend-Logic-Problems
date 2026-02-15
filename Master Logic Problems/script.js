@@ -139,3 +139,67 @@ const unsub = ps.subscribe("news", msg => console.log("News:", msg));
 ps.publish("news", "Hello World");
 unsub();
 ps.publish("news", "Won't show");
+
+
+
+// Problem 185 Build Priority Message Queue
+class PriorityQueue {
+  constructor() {
+    this.heap = [];
+  }
+
+  enqueue(value, priority) {
+    const node = { value, priority };
+    this.heap.push(node);
+    this.bubbleUp();
+  }
+
+  dequeue() {
+    if (!this.heap.length) return null;
+    this.swap(0, this.heap.length - 1);
+    const removed = this.heap.pop();
+    this.bubbleDown();
+    return removed.value;
+  }
+
+  bubbleUp() {
+    let i = this.heap.length - 1;
+    while (i > 0) {
+      let p = Math.floor((i - 1) / 2);
+      if (this.heap[p].priority <= this.heap[i].priority) break;
+      this.swap(i, p);
+      i = p;
+    }
+  }
+
+  bubbleDown() {
+    let i = 0;
+    const length = this.heap.length;
+    while (true) {
+      let left = 2 * i + 1;
+      let right = 2 * i + 2;
+      let smallest = i;
+
+      if (left < length && this.heap[left].priority < this.heap[smallest].priority)
+        smallest = left;
+      if (right < length && this.heap[right].priority < this.heap[smallest].priority)
+        smallest = right;
+      if (smallest === i) break;
+
+      this.swap(i, smallest);
+      i = smallest;
+    }
+  }
+
+  swap(i, j) {
+    [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
+  }
+}
+
+// ✅ Test
+const pq = new PriorityQueue();
+pq.enqueue("Low", 5);
+pq.enqueue("High", 1);
+pq.enqueue("Medium", 3);
+console.log(pq.dequeue()); // High
+console.log(pq.dequeue()); // Medium
