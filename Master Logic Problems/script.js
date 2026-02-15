@@ -107,3 +107,35 @@ emitter.emit("message", "Hello");
 emitter.once("onceEvent", msg => console.log("Once:", msg));
 emitter.emit("onceEvent", "Run 1");
 emitter.emit("onceEvent", "Run 2");
+
+
+
+// Problem 184 Implement pub/sub system
+class PubSub {
+  constructor() {
+    this.topics = new Map();
+  }
+
+  subscribe(topic, listener) {
+    if (!this.topics.has(topic)) {
+      this.topics.set(topic, new Set()); // unique listeners
+    }
+    this.topics.get(topic).add(listener);
+
+    return () => this.topics.get(topic)?.delete(listener); // unsubscribe
+  }
+
+  publish(topic, data) {
+    if (!this.topics.has(topic)) return;
+    for (const listener of this.topics.get(topic)) {
+      listener(data);
+    }
+  }
+}
+
+// ✅ Test
+const ps = new PubSub();
+const unsub = ps.subscribe("news", msg => console.log("News:", msg));
+ps.publish("news", "Hello World");
+unsub();
+ps.publish("news", "Won't show");
