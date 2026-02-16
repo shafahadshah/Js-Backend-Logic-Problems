@@ -425,3 +425,32 @@ search.addDoc(1, "The quick brown fox");
 search.addDoc(2, "jumped over the lazy dog");
 search.addDoc(3, "brown dog jumps");
 console.log("Search Results for 'brown dog':", [...search.search("brown dog")]);
+
+
+
+
+// Problem 193 Spell Checker Using Levenshtein Distance
+function levenshtein(a, b) {
+    const dp = Array.from({length:a.length+1}, () => Array(b.length+1).fill(0));
+    for(let i=0;i<=a.length;i++) dp[i][0]=i;
+    for(let j=0;j<=b.length;j++) dp[0][j]=j;
+    for(let i=1;i<=a.length;i++){
+        for(let j=1;j<=b.length;j++){
+            dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j-1], dp[i][j-1], dp[i-1][j]);
+        }
+    }
+    return dp[a.length][b.length];
+}
+
+function spellCheck(word, dict) {
+    let minDist = Infinity, suggestion = null;
+    dict.forEach(d => {
+        const dist = levenshtein(word, d);
+        if(dist < minDist){ minDist=dist; suggestion=d; }
+    });
+    return suggestion;
+}
+
+// Example
+const dictionary = ["apple", "orange", "banana", "grape"];
+console.log("Suggestion for 'aple':", spellCheck("aple", dictionary));
