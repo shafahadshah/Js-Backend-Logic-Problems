@@ -399,3 +399,29 @@ function tfidf(docs, query) {
 // Example
 const docs = ["The quick brown fox", "jumped over the lazy dog", "brown dog jumps"];
 console.log("TF-IDF Scores:", tfidf(docs, "brown dog"));
+
+
+
+
+// Problem 192 Mini Search Engine Index
+// Mini Inverted Index
+class MiniSearch {
+    constructor() { this.index = {}; }
+    addDoc(id, text) {
+        text.toLowerCase().match(/\w+/g)?.forEach(word => {
+            if (!this.index[word]) this.index[word] = new Set();
+            this.index[word].add(id);
+        });
+    }
+    search(query) {
+        const words = query.toLowerCase().match(/\w+/g) || [];
+        return words.reduce((res, w) => res ? new Set([...res].filter(x => this.index[w]?.has(x))) : this.index[w], null) || new Set();
+    }
+}
+
+// Example
+const search = new MiniSearch();
+search.addDoc(1, "The quick brown fox");
+search.addDoc(2, "jumped over the lazy dog");
+search.addDoc(3, "brown dog jumps");
+console.log("Search Results for 'brown dog':", [...search.search("brown dog")]);
