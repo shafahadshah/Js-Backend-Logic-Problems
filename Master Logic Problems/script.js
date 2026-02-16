@@ -478,3 +478,28 @@ const csvData = `name,age,quote
 Alice,30,"Hello, world!"
 Bob,25,"I said ""Hi"""`;
 console.log("CSV Parsed:", parseCSV(csvData));
+
+
+
+
+// Problem 195 Advanced XML Parser
+function parseXML(xml) {
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xml, "application/xml");
+    function traverse(node){
+        let obj = {};
+        if(node.nodeType===1){
+            [...node.attributes].forEach(attr => obj[attr.name]=attr.value);
+            [...node.childNodes].forEach(child => {
+                if(child.nodeType===3) obj['text'] = child.nodeValue.trim();
+                else obj[child.nodeName] = traverse(child);
+            });
+        }
+        return obj;
+    }
+    return traverse(xmlDoc.documentElement);
+}
+
+// Example
+const xml = `<person age="30"><name>Alice</name></person>`;
+console.log("XML Parsed:", parseXML(xml));
