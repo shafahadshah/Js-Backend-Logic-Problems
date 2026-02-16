@@ -368,3 +368,34 @@ const urls = [
 ];
 
 console.log(generateSitemap(urls));
+
+
+
+
+// Problem 191 Text Search Scoring (TF-IDF)
+// TF-IDF Scoring
+function tfidf(docs, query) {
+    const tokenize = text => text.toLowerCase().match(/\w+/g) || [];
+    
+    const idf = {};
+    const N = docs.length;
+    
+    docs.forEach(doc => {
+        const words = new Set(tokenize(doc));
+        words.forEach(word => idf[word] = (idf[word] || 0) + 1);
+    });
+    
+    Object.keys(idf).forEach(word => idf[word] = Math.log(N / idf[word]));
+
+    const scores = docs.map(doc => {
+        const tf = {};
+        tokenize(doc).forEach(word => tf[word] = (tf[word] || 0) + 1);
+        return tokenize(query).reduce((sum, word) => sum + (tf[word] || 0) * (idf[word] || 0), 0);
+    });
+    
+    return scores;
+}
+
+// Example
+const docs = ["The quick brown fox", "jumped over the lazy dog", "brown dog jumps"];
+console.log("TF-IDF Scores:", tfidf(docs, "brown dog"));
