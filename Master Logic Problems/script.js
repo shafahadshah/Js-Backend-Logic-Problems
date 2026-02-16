@@ -526,3 +526,60 @@ const rleDecompressed = rleDecompress(rleCompressed);
 console.log("RLE Original:", rleText);
 console.log("RLE Compressed:", rleCompressed);
 console.log("RLE Decompressed:", rleDecompressed);
+
+
+
+
+// Problem 197 LZW Compression & Decompression
+// LZW Compression
+function lzwCompress(input) {
+    const dict = {};
+    const data = input.split("");
+    const result = [];
+    let dictSize = 256;
+
+    // Initialize dictionary
+    for (let i = 0; i < 256; i++) dict[String.fromCharCode(i)] = i;
+
+    let w = "";
+    for (let c of data) {
+        const wc = w + c;
+        if (dict[wc] !== undefined) w = wc;
+        else {
+            result.push(dict[w]);
+            dict[wc] = dictSize++;
+            w = c;
+        }
+    }
+    if (w !== "") result.push(dict[w]);
+    return result;
+}
+
+// LZW Decompression
+function lzwDecompress(compressed) {
+    const dict = {};
+    let dictSize = 256;
+
+    for (let i = 0; i < 256; i++) dict[i] = String.fromCharCode(i);
+
+    let w = String.fromCharCode(compressed[0]);
+    let result = w;
+
+    for (let i = 1; i < compressed.length; i++) {
+        const k = compressed[i];
+        const entry = dict[k] !== undefined ? dict[k] : w + w[0];
+        result += entry;
+        dict[dictSize++] = w + entry[0];
+        w = entry;
+    }
+    return result;
+}
+
+// Example usage
+const lzwText = "AAABBBCC";
+const lzwCompressed = lzwCompress(lzwText);
+const lzwDecompressed = lzwDecompress(lzwCompressed);
+
+console.log("LZW Original:", lzwText);
+console.log("LZW Compressed:", lzwCompressed);
+console.log("LZW Decompressed:", lzwDecompressed);
