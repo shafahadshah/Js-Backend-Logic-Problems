@@ -454,3 +454,27 @@ function spellCheck(word, dict) {
 // Example
 const dictionary = ["apple", "orange", "banana", "grape"];
 console.log("Suggestion for 'aple':", spellCheck("aple", dictionary));
+
+
+
+
+// Problem 194 Advanced CSV Parser
+function parseCSV(csv) {
+    const lines = csv.split(/\r?\n/);
+    return lines.map(line => {
+        const result = [];
+        let match;
+        const regex = /("([^"]*(?:""[^"]*)*)"|[^,]+)/g;
+        while(match = regex.exec(line)) {
+            let value = match[2] !== undefined ? match[2].replace(/""/g,'"') : match[1];
+            result.push(value);
+        }
+        return result;
+    });
+}
+
+// Example
+const csvData = `name,age,quote
+Alice,30,"Hello, world!"
+Bob,25,"I said ""Hi"""`;
+console.log("CSV Parsed:", parseCSV(csvData));
