@@ -503,3 +503,26 @@ function parseXML(xml) {
 // Example
 const xml = `<person age="30"><name>Alice</name></person>`;
 console.log("XML Parsed:", parseXML(xml));
+
+
+
+
+// Problem 196 RLE Compression & Decompression
+// RLE Compression
+function rleCompress(str) {
+    return str.replace(/(.)\1*/g, (match, char) => match.length + char);
+}
+
+// RLE Decompression
+function rleDecompress(str) {
+    return str.replace(/(\d+)(.)/g, (_, count, char) => char.repeat(count));
+}
+
+// Example usage
+const rleText = "AAABBBCC";
+const rleCompressed = rleCompress(rleText);
+const rleDecompressed = rleDecompress(rleCompressed);
+
+console.log("RLE Original:", rleText);
+console.log("RLE Compressed:", rleCompressed);
+console.log("RLE Decompressed:", rleDecompressed);
