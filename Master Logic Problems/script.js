@@ -720,3 +720,30 @@ const store = new EventStore();
 store.add({ balance: 100 });
 store.add({ balance: 150 });
 console.log(store.replay());
+
+
+
+
+// Problem 203 CQRS Simulation
+class CQRS {
+  constructor() {
+    this.writeModel = [];
+    this.readModel = [];
+  }
+
+  command(data) {
+    this.writeModel.push(data);
+    this.readModel = [...this.writeModel]; // Sync read model
+  }
+
+  query() {
+    return this.readModel;
+  }
+}
+
+// Test
+const system = new CQRS();
+system.command({ id: 1, name: "Item1" });
+system.command({ id: 2, name: "Item2" });
+
+console.log(system.query());
