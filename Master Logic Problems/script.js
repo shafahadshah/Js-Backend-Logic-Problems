@@ -747,3 +747,29 @@ system.command({ id: 1, name: "Item1" });
 system.command({ id: 2, name: "Item2" });
 
 console.log(system.query());
+
+
+
+
+// Problem 204 Cluster Leader Election
+class Node {
+  constructor(id, nodes) {
+    this.id = id;
+    this.nodes = nodes;
+  }
+
+  electLeader() {
+    const highest = Math.max(...this.nodes.map(n => n.id));
+    return highest;
+  }
+}
+
+// Test
+const nodes = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 }
+];
+
+const clusterNode = new Node(1, nodes);
+console.log("Leader:", clusterNode.electLeader());
