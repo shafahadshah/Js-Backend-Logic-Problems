@@ -583,3 +583,27 @@ const lzwDecompressed = lzwDecompress(lzwCompressed);
 console.log("LZW Original:", lzwText);
 console.log("LZW Compressed:", lzwCompressed);
 console.log("LZW Decompressed:", lzwDecompressed);
+
+
+
+
+// Problem 198 Load Balancer – Round Robin
+class RoundRobin {
+  constructor(servers) {
+    this.servers = servers;
+    this.index = 0;
+  }
+
+  next() {
+    const server = this.servers[this.index];
+    this.index = (this.index + 1) % this.servers.length;
+    return server;
+  }
+}
+
+// Test
+const rr = new RoundRobin(["S1", "S2", "S3"]);
+console.log(rr.next()); // S1
+console.log(rr.next()); // S2
+console.log(rr.next()); // S3
+console.log(rr.next()); // S1
