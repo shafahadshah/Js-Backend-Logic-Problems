@@ -636,3 +636,35 @@ const lc = new LeastConnections(["S1", "S2", "S3"]);
 console.log(lc.next());
 console.log(lc.next());
 console.log(lc.next());
+
+
+
+
+// Problem 200 Load Balancer – Weighted
+class WeightedBalancer {
+  constructor(servers) {
+    this.pool = [];
+    servers.forEach(({ name, weight }) => {
+      for (let i = 0; i < weight; i++) {
+        this.pool.push(name);
+      }
+    });
+    this.index = 0;
+  }
+
+  next() {
+    const server = this.pool[this.index];
+    this.index = (this.index + 1) % this.pool.length;
+    return server;
+  }
+}
+
+// Test
+const wb = new WeightedBalancer([
+  { name: "S1", weight: 1 },
+  { name: "S2", weight: 3 }
+]);
+
+for (let i = 0; i < 6; i++) {
+  console.log(wb.next());
+}
