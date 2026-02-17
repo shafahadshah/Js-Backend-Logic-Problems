@@ -694,3 +694,29 @@ function diff(oldText, newText) {
 
 // Test
 console.log(diff("a\nb\nc", "a\nc\nd"));
+
+
+
+
+// Problem 202 Event Sourcing Logic
+class EventStore {
+  constructor() {
+    this.events = [];
+  }
+
+  add(event) {
+    this.events.push(event);
+  }
+
+  replay(initialState = {}) {
+    return this.events.reduce((state, event) => {
+      return { ...state, ...event };
+    }, initialState);
+  }
+}
+
+// Test
+const store = new EventStore();
+store.add({ balance: 100 });
+store.add({ balance: 150 });
+console.log(store.replay());
