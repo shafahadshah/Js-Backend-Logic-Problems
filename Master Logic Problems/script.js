@@ -668,3 +668,29 @@ const wb = new WeightedBalancer([
 for (let i = 0; i < 6; i++) {
   console.log(wb.next());
 }
+
+
+
+
+// Problem 201 Version Control – Diff Engine
+function diff(oldText, newText) {
+  const oldLines = oldText.split("\n");
+  const newLines = newText.split("\n");
+
+  const result = [];
+
+  const all = new Set([...oldLines, ...newLines]);
+
+  all.forEach(line => {
+    if (!oldLines.includes(line)) {
+      result.push(`+ ${line}`);
+    } else if (!newLines.includes(line)) {
+      result.push(`- ${line}`);
+    }
+  });
+
+  return result;
+}
+
+// Test
+console.log(diff("a\nb\nc", "a\nc\nd"));
