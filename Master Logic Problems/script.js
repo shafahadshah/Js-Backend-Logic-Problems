@@ -607,3 +607,32 @@ console.log(rr.next()); // S1
 console.log(rr.next()); // S2
 console.log(rr.next()); // S3
 console.log(rr.next()); // S1
+
+
+
+
+// Problem 199 Load Balancer – Least Connections
+class LeastConnections {
+  constructor(servers) {
+    this.servers = servers.map(s => ({ name: s, connections: 0 }));
+  }
+
+  next() {
+    let minServer = this.servers.reduce((a, b) =>
+      a.connections <= b.connections ? a : b
+    );
+    minServer.connections++;
+    return minServer.name;
+  }
+
+  release(serverName) {
+    const server = this.servers.find(s => s.name === serverName);
+    if (server && server.connections > 0) server.connections--;
+  }
+}
+
+// Test
+const lc = new LeastConnections(["S1", "S2", "S3"]);
+console.log(lc.next());
+console.log(lc.next());
+console.log(lc.next());
