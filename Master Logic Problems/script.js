@@ -773,3 +773,46 @@ const nodes = [
 
 const clusterNode = new Node(1, nodes);
 console.log("Leader:", clusterNode.electLeader());
+
+
+
+
+// Problem 205 Gossip Protocol Simulation
+class GossipNode {
+  constructor(id) {
+    this.id = id;
+    this.messages = new Set();
+  }
+
+  receive(msg) {
+    if (!this.messages.has(msg)) {
+      this.messages.add(msg);
+      return true;
+    }
+    return false;
+  }
+}
+
+function gossipSimulation() {
+  const nodes = [0, 1, 2].map(id => new GossipNode(id));
+
+  // Initial message
+  nodes[0].receive("Hello");
+
+  nodes.forEach(sender => {
+    nodes.forEach(receiver => {
+      if (sender !== receiver) {
+        sender.messages.forEach(msg => {
+          if (receiver.receive(msg)) {
+            console.log(`Node ${sender.id} -> Node ${receiver.id}: ${msg}`);
+          }
+        });
+      }
+    });
+  });
+
+  console.log("Final State:");
+  nodes.forEach(n => console.log(`Node ${n.id}`, [...n.messages]));
+}
+
+gossipSimulation();
