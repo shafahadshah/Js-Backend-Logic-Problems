@@ -946,3 +946,44 @@ function sqlDemo() {
 }
 
 sqlDemo();
+
+
+
+
+// Problem 210 Offline Sync Logic
+class SyncEngine {
+  constructor() {
+    this.local = new Map();
+    this.remote = new Map();
+  }
+
+  updateLocal(key, value) {
+    this.local.set(key, { value, synced: false });
+  }
+
+  sync() {
+    this.local.forEach((v, k) => {
+      if (!v.synced) {
+        this.remote.set(k, v.value);
+        v.synced = true;
+        console.log("Synced:", k);
+      }
+    });
+  }
+
+  printRemote() {
+    this.remote.forEach((v, k) =>
+      console.log("Remote:", k, v)
+    );
+  }
+}
+
+function syncDemo() {
+  const engine = new SyncEngine();
+  engine.updateLocal("task1", "done");
+  engine.updateLocal("task2", "pending");
+  engine.sync();
+  engine.printRemote();
+}
+
+syncDemo();
