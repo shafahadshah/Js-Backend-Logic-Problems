@@ -916,3 +916,33 @@ function kvDemo() {
 }
 
 kvDemo();
+
+
+
+
+// Problem 209 In-Memory SQL-like Parser
+class SimpleSQL {
+  constructor() {
+    this.table = [];
+  }
+
+  insert(row) {
+    this.table.push(row);
+  }
+
+  select(col, val) {
+    return this.table.filter(r => r[col] === val);
+  }
+}
+
+function sqlDemo() {
+  const db = new SimpleSQL();
+  db.insert({ id: 1, name: "Alice" });
+  db.insert({ id: 2, name: "Bob" });
+
+  const result = db.select("name", "Alice");
+
+  result.forEach(r => console.log("Found:", r));
+}
+
+sqlDemo();
