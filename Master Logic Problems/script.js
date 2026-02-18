@@ -987,3 +987,35 @@ function syncDemo() {
 }
 
 syncDemo();
+
+
+
+
+// Problem 211 Job Scheduling Engine
+class JobScheduler {
+  constructor() {
+    this.jobs = [];
+  }
+
+  add(name, priority) {
+    this.jobs.push({ name, priority });
+  }
+
+  run() {
+    this.jobs
+      .sort((a, b) => b.priority - a.priority)
+      .forEach(job =>
+        console.log("Running:", job.name, "Priority:", job.priority)
+      );
+  }
+}
+
+function schedulerDemo() {
+  const scheduler = new JobScheduler();
+  scheduler.add("LowTask", 1);
+  scheduler.add("MediumTask", 3);
+  scheduler.add("HighTask", 5);
+  scheduler.run();
+}
+
+schedulerDemo();
