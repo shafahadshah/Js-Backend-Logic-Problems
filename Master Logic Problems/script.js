@@ -882,3 +882,37 @@ function conflictDemo() {
 }
 
 conflictDemo();
+
+
+
+
+// Problem 208 Key-Value Database Engine
+class KeyValueDB {
+  constructor() {
+    this.data = Object.create(null);
+  }
+
+  set(key, value) {
+    this.data[key] = value;
+  }
+
+  get(key) {
+    return this.data[key] ?? null;
+  }
+
+  print() {
+    Object.keys(this.data).forEach(k =>
+      console.log(k, ":", this.data[k])
+    );
+  }
+}
+
+function kvDemo() {
+  const db = new KeyValueDB();
+  db.set("a", 10);
+  db.set("b", 20);
+  db.print();
+  console.log("Get a:", db.get("a"));
+}
+
+kvDemo();
