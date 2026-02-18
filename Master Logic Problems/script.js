@@ -816,3 +816,37 @@ function gossipSimulation() {
 }
 
 gossipSimulation();
+
+
+
+
+// Problem 206 Vector Clock Implementation
+class VectorClock {
+  constructor(id, size) {
+    this.id = id;
+    this.clock = new Array(size).fill(0);
+  }
+
+  tick() {
+    this.clock[this.id]++;
+  }
+
+  merge(otherClock) {
+    this.clock = this.clock.map((v, i) =>
+      Math.max(v, otherClock[i])
+    );
+  }
+}
+
+function vectorClockDemo() {
+  const nodes = [0, 1, 2].map(id => new VectorClock(id, 3));
+
+  nodes[0].tick();
+  nodes[1].merge(nodes[0].clock);
+
+  nodes.forEach(n =>
+    console.log(`Node ${n.id} clock:`, n.clock)
+  );
+}
+
+vectorClockDemo();
