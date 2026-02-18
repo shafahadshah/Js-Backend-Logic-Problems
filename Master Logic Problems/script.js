@@ -850,3 +850,35 @@ function vectorClockDemo() {
 }
 
 vectorClockDemo();
+
+
+
+
+// Problem 207 Conflict Resolution (Last Write Wins)
+class LWWStore {
+  constructor() {
+    this.store = new Map();
+  }
+
+  set(key, value, ts) {
+    const existing = this.store.get(key);
+    if (!existing || ts > existing.ts) {
+      this.store.set(key, { value, ts });
+    }
+  }
+
+  print() {
+    this.store.forEach((v, k) =>
+      console.log(`${k} => ${v.value} @${v.ts}`)
+    );
+  }
+}
+
+function conflictDemo() {
+  const db = new LWWStore();
+  db.set("user", "Alice", 1);
+  db.set("user", "Bob", 2); // wins
+  db.print();
+}
+
+conflictDemo();
