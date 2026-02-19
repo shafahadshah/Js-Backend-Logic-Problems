@@ -1060,3 +1060,38 @@ bg.add(async () => {
 bg.add(async () => {
     console.log("Task 2 executed");
 });
+
+
+
+
+// Problem 213 Dependency Resolver
+class DependencyResolver {
+    constructor() {
+        this.graph = {};
+        this.visited = new Set();
+    }
+
+    add(task, deps = []) {
+        this.graph[task] = deps;
+    }
+
+    resolve(task) {
+        if (this.visited.has(task)) return;
+
+        for (let dep of this.graph[task] || []) {
+            this.resolve(dep);
+        }
+
+        this.visited.add(task);
+        console.log("Executing:", task);
+    }
+}
+
+// ==== EXECUTION ====
+const resolver = new DependencyResolver();
+
+resolver.add("Build", ["Compile", "Test"]);
+resolver.add("Test", ["Compile"]);
+resolver.add("Compile");
+
+resolver.resolve("Build");
