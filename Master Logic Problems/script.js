@@ -1126,3 +1126,25 @@ scheduler.add("High Task", 5);
 scheduler.add("Medium Task", 3);
 
 scheduler.run();
+
+
+
+
+// Problem 215 Resource Allocation Algorithm
+class RoundRobin {
+    constructor(tasks, quantum) {
+        this.queue = [...tasks];
+        this.quantum = quantum;
+    }
+
+    execute() {
+        while (this.queue.length) {
+            const task = this.queue.shift();
+            console.log(`Processing ${task} for ${this.quantum}ms`);
+        }
+    }
+}
+
+// ==== EXECUTION ====
+const rrr = new RoundRobin(["T1", "T2", "T3"], 2);
+rrr.execute();
