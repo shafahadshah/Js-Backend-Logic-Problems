@@ -1095,3 +1095,34 @@ resolver.add("Test", ["Compile"]);
 resolver.add("Compile");
 
 resolver.resolve("Build");
+
+
+
+
+// Problem 214 Priority Scheduler
+class PriorityScheduler {
+    constructor() {
+        this.tasks = [];
+    }
+
+    add(task, priority) {
+        this.tasks.push({ task, priority });
+        this.tasks.sort((a, b) => b.priority - a.priority);
+    }
+
+    run() {
+        while (this.tasks.length) {
+            const t = this.tasks.shift();
+            console.log("Running:", t.task, "| Priority:", t.priority);
+        }
+    }
+}
+
+// ==== EXECUTION ====
+const scheduler = new PriorityScheduler();
+
+scheduler.add("Low Task", 1);
+scheduler.add("High Task", 5);
+scheduler.add("Medium Task", 3);
+
+scheduler.run();
