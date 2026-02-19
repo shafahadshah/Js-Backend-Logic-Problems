@@ -1148,3 +1148,31 @@ class RoundRobin {
 // ==== EXECUTION ====
 const rrr = new RoundRobin(["T1", "T2", "T3"], 2);
 rrr.execute();
+
+
+
+
+// Problem 216 Throttling Logic
+class Throttler {
+    constructor(limitMs) {
+        this.limitMs = limitMs;
+        this.lastRun = 0;
+    }
+
+    run(task) {
+        const now = Date.now();
+        if (now - this.lastRun >= this.limitMs) {
+            task();
+            this.lastRun = now;
+        } else {
+            console.log("Throttled");
+        }
+    }
+}
+
+// ==== EXECUTION ====
+const throttle = new Throttler(1000);
+
+throttle.run(() => console.log("Task Executed"));
+setTimeout(() => throttle.run(() => console.log("Task Executed")), 500);
+setTimeout(() => throttle.run(() => console.log("Task Executed")), 1200);
