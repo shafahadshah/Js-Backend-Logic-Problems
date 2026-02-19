@@ -1019,3 +1019,44 @@ function schedulerDemo() {
 }
 
 schedulerDemo();
+
+
+
+
+// Problem 212 Background Task Queue
+class BackgroundTaskQueue {
+    constructor() {
+        this.queue = [];
+        this.running = false;
+    }
+
+    add(task) {
+        this.queue.push(task);
+        this.run();
+    }
+
+    async run() {
+        if (this.running) return;
+        this.running = true;
+
+        while (this.queue.length) {
+            const task = this.queue.shift();
+            await task();
+        }
+
+        this.running = false;
+    }
+}
+
+// ==== EXECUTION ====
+const bg = new BackgroundTaskQueue();
+
+bg.add(async () => {
+    console.log("Task 1 started");
+    await new Promise(r => setTimeout(r, 500));
+    console.log("Task 1 finished");
+});
+
+bg.add(async () => {
+    console.log("Task 2 executed");
+});
