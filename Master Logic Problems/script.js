@@ -1176,3 +1176,36 @@ const throttle = new Throttler(1000);
 throttle.run(() => console.log("Task Executed"));
 setTimeout(() => throttle.run(() => console.log("Task Executed")), 500);
 setTimeout(() => throttle.run(() => console.log("Task Executed")), 1200);
+
+
+
+
+// Problem 217 Token Bucket Advanced
+class TokenBucket {
+    constructor(capacity, refillPerSec) {
+        this.capacity = capacity;
+        this.tokens = capacity;
+
+        setInterval(() => {
+            this.tokens = Math.min(this.capacity, this.tokens + refillPerSec);
+        }, 1000);
+    }
+
+    allow() {
+        if (this.tokens > 0) {
+            this.tokens--;
+            return true;
+        }
+        return false;
+    }
+}
+
+// ==== EXECUTION ====
+const bucket = new TokenBucket(3, 1);
+
+let i = 1;
+const interval = setInterval(() => {
+    console.log("Request", i, ":", bucket.allow());
+    i++;
+    if (i > 6) clearInterval(interval);
+}, 300);
