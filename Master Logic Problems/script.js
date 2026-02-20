@@ -1251,3 +1251,51 @@ const bucket = new LeakyBucket(10, 2); // cap=10, leak=2/sec
 bucket.addRequest(5);
 setTimeout(() => bucket.addRequest(4), 1000);
 setTimeout(() => bucket.addRequest(6), 2000);
+
+
+
+// Problem 219 Multi-Threaded Queue Simulation
+class WorkerQueue {
+  constructor(workerCount) {
+    this.queue = [];
+    this.workerCount = workerCount;
+    this.activeWorkers = 0;
+  }
+
+  addTask(task) {
+    this.queue.push(task);
+    this.run();
+  }
+
+  async run() {
+    if (this.activeWorkers >= this.workerCount || this.queue.length === 0) {
+      return;
+    }
+
+    const task = this.queue.shift();
+    this.activeWorkers++;
+
+    try {
+      await task();
+    } finally {
+      this.activeWorkers--;
+      this.run();
+    }
+
+    this.run();
+  }
+}
+
+// ✅ Test
+const queue = new WorkerQueue(2);
+
+const createTask = (id, time) => async () => {
+  console.log(`Start Task ${id}`);
+  await new Promise(res => setTimeout(res, time));
+  console.log(`End Task ${id}`);
+};
+
+queue.addTask(createTask(1, 2000));
+queue.addTask(createTask(2, 1000));
+queue.addTask(createTask(3, 1500));
+queue.addTask(createTask(4, 500));
