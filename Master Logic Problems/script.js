@@ -1299,3 +1299,56 @@ queue.addTask(createTask(1, 2000));
 queue.addTask(createTask(2, 1000));
 queue.addTask(createTask(3, 1500));
 queue.addTask(createTask(4, 500));
+
+
+
+// Problem 220 Deadlock Detection Logic (Graph Based)
+class DeadlockDetector {
+  constructor() {
+    this.graph = new Map();
+  }
+
+  addEdge(from, to) {
+    if (!this.graph.has(from)) this.graph.set(from, []);
+    this.graph.get(from).push(to);
+  }
+
+  detectDeadlock() {
+    const visited = new Set();
+    const recursionStack = new Set();
+
+    const dfs = (node) => {
+      if (recursionStack.has(node)) return true;
+      if (visited.has(node)) return false;
+
+      visited.add(node);
+      recursionStack.add(node);
+
+      for (let neighbor of (this.graph.get(node) || [])) {
+        if (dfs(neighbor)) return true;
+      }
+
+      recursionStack.delete(node);
+      return false;
+    };
+
+    for (let node of this.graph.keys()) {
+      if (dfs(node)) {
+        console.log("❌ Deadlock Detected");
+        return true;
+      }
+    }
+
+    console.log("✅ No Deadlock");
+    return false;
+  }
+}
+
+// ✅ Test
+const detector = new DeadlockDetector();
+
+detector.addEdge("P1", "P2");
+detector.addEdge("P2", "P3");
+detector.addEdge("P3", "P1"); // cycle
+
+detector.detectDeadlock();
