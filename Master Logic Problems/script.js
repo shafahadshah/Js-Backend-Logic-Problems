@@ -1201,11 +1201,53 @@ class TokenBucket {
 }
 
 // ==== EXECUTION ====
-const bucket = new TokenBucket(3, 1);
+const bucket1 = new TokenBucket(3, 1);
 
 let i = 1;
 const interval = setInterval(() => {
-    console.log("Request", i, ":", bucket.allow());
+    console.log("Request", i, ":", bucket1.allow());
     i++;
     if (i > 6) clearInterval(interval);
 }, 300);
+
+
+
+
+// Problem 218 Leaky Bucket (Advanced)
+class LeakyBucket {
+  constructor(capacity, leakRatePerSec) {
+    this.capacity = capacity;
+    this.leakRate = leakRatePerSec;
+    this.water = 0;
+    this.lastCheck = Date.now();
+  }
+
+  leak() {
+    const now = Date.now();
+    const elapsed = (now - this.lastCheck) / 1000;
+    const leaked = elapsed * this.leakRate;
+
+    this.water = Math.max(0, this.water - leaked);
+    this.lastCheck = now;
+  }
+
+  addRequest(amount = 1) {
+    this.leak();
+
+    if (this.water + amount > this.capacity) {
+      console.log("❌ Rejected");
+      return false;
+    }
+
+    this.water += amount;
+    console.log("✅ Accepted | Current:", this.water.toFixed(2));
+    return true;
+  }
+}
+
+// ✅ Test
+const bucket = new LeakyBucket(10, 2); // cap=10, leak=2/sec
+
+bucket.addRequest(5);
+setTimeout(() => bucket.addRequest(4), 1000);
+setTimeout(() => bucket.addRequest(6), 2000);
